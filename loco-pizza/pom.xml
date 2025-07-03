@@ -70,6 +70,11 @@
     		<artifactId>bootstrap</artifactId>
     		<version>5.3.7</version>
 		</dependency>
+		<dependency>
+    		<groupId>org.webjars.npm</groupId>
+    		<artifactId>chart.js</artifactId>
+    		<version>3.6.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>

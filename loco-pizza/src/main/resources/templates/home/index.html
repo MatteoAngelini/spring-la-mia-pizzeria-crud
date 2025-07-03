@@ -1,24 +1,111 @@
 <!DOCTYPE html>
 <html lang="it" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
 
-    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.7/css/bootstrap.min.css}"/>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.7/css/bootstrap.min.css}" />
     <link rel="stylesheet" th:href="@{/css/style.css}">
+
 </head>
-<body >
-    <header th:replace= "/fragments/navbar :: header-navbar" ></header>
+
+<body>
+    <header th:replace="/fragments/navbar :: header-navbar"></header>
 
     <main>
         <div class="container mt-3">
-            <h1>Questa è la Home Page</h1>
+            <h1>Statistica Pizzeria: Loco Pizza</h1>
+            <p class="mb-4">Statistiche delle aggiunte, modifiche ed eliminazione delle pizze</p>
+
+            <div class="row"> 
+                <div class="col-4 bg-secondary-subtle rounded shadow">
+                    <canvas id="barChart"></canvas>
+                </div>
+                <div class="col-4 bg-secondary-subtle ms-3 rounded shadow">
+                    <canvas id="lineChart"></canvas>
+                </div>
+                <div class="col-3 bg-secondary-subtle ms-3 rounded shadow">
+                    <canvas id="pieChart"></canvas>
+                </div>
+            </div>
         </div>
     </main>
-    
-    
+
+
 
     <script th:src="@{/webjars/bootstrap/5.3.7/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{https://cdn.jsdelivr.net/npm/chart.js}"></script>
+    <script th:inline="javascript">
+
+        const aggiunte = /*[[${aggiunte}]]*/ 0;
+        const modificate = /*[[${modificate}]]*/ 0;
+        const eliminate = /*[[${eliminate}]]*/ 0;
+
+        const labels = ['Aggiunte', 'Modificate', 'Eliminate'];
+        const dataValues = [aggiunte, modificate, eliminate];
+        const colors = ['#4caf50', '#ff9800', '#f44336'];
+
+        // Bar Chart
+        const ctxBar = document.getElementById('barChart').getContext('2d');
+        new Chart(ctxBar, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Numero pizze',
+                    data: dataValues,
+                    backgroundColor: colors
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true, precision: 0 }
+                }
+            }
+        });
+
+        // Pie Chart
+        const ctxPie = document.getElementById('pieChart').getContext('2d');
+        new Chart(ctxPie, {
+            type: 'pie',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Distribuzione pizze',
+                    data: dataValues,
+                    backgroundColor: colors
+                }]
+            },
+            options: { responsive: true }
+        });
+
+        // Line Chart
+        const ctxLine = document.getElementById('lineChart').getContext('2d');
+        new Chart(ctxLine, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Andamento pizze',
+                    data: dataValues,
+                    borderColor: '#2196f3',
+                    backgroundColor: 'rgba(33, 150, 243, 0.2)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true, precision: 0 }
+                }
+            }
+        });
+        /*]]>*/
+    </script>
 </body>
+
 </html>
