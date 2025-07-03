@@ -36,7 +36,7 @@
                         <td th:text="${pizza.titolo}" style="font-weight: 700;" class="align-middle text-start"></td>
                         <td th:text="${pizza.description}" class="align-middle text-start"></td>
                         <td class="align-middle text-start">&euro; [[${#numbers.formatDecimal(pizza.prezzo, 1, 2)}]]</td>
-                        <td style="text-align: center;" class="align-middle text-start">
+                        <td style="text-align: center;" class="align-middle text-center">
                             <button class="btn btn-sm btn-primary">Mostra</button>
                             <button class="btn btn-sm btn-warning">Modifica</button>
                             <button class="btn btn-sm btn-danger">Elimina</button>
@@ -45,7 +45,7 @@
                 </tbody>
             </table>
         </div>
-        
+
     </main>
 
 
