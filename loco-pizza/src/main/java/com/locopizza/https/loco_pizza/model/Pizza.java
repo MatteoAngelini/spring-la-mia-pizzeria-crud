@@ -25,7 +25,7 @@ public class Pizza {
     private String imageUrl;
 
     @Column(name="prices")
-    private Double price;
+    private Double prezzo;
 
 
     //Get + Set
@@ -62,12 +62,12 @@ public class Pizza {
         this.imageUrl = imageUrl;
     }
 
-    public Double getPrice() {
-        return this.price;
+    public Double getPrezzo() {
+        return this.prezzo;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
+    public void setPrezzo(Double prezzo) {
+        this.prezzo = prezzo;
     }
 
     

@@ -1,0 +1,51 @@
+.sidebar {
+      width: 250px;
+      min-height: 100vh;
+      background-color: #343a40;
+      color: white;
+    }
+    .sidebar a {
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+    .sidebar a:hover {
+      background-color: #4d555e;
+      color: white;
+      border-radius: 5px;
+    }
+    .nav-link.active {
+      color: rgb(255, 217, 0);
+      border-radius: 5px;
+    }
+    .main-content {
+      margin-left: 250px; /* same as sidebar width */
+    }
+.container{
+    margin-left: 280px;
+}
+.tabella-pizze{
+    margin-left: 290px;
+}
+/* Arrotonda gli angoli della tabella */
+table.rounded-corners {
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+}
+
+/* Intestazione in alto */
+table.rounded-corners thead th:first-child {
+  border-top-left-radius: 10px;
+}
+table.rounded-corners thead th:last-child {
+  border-top-right-radius: 10px;
+}
+
+/* Ultima riga in basso */
+table.rounded-corners tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 10px;
+}
+table.rounded-corners tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 10px;
+}
