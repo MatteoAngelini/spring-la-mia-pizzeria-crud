@@ -15,23 +15,31 @@
     <header th:replace="/fragments/navbar :: header-navbar"></header>
 
     <main>
-        <div class="container mt-3">
+        <div class="container-fluid mt-3" style="padding-left: 200px;">
             <h1>Statistica Pizzeria: Loco Pizza</h1>
-            <p class="mb-4">Statistiche delle aggiunte, modifiche ed eliminazione delle pizze</p>
+            <p class="mb-4 text-secondary">Statistiche delle aggiunte, modifiche ed eliminazioni delle pizze</p>
 
-            <div class="row"> 
-                <div class="col-4 bg-dark rounded shadow">
-                    <canvas id="barChart"></canvas>
+            <div class="row mb-3" style="position: relative; height:200px; width:826px;">
+                <div class="col-6 ps-2">
+                    <div class="bg-dark rounded shadow chart-container">
+                        <canvas id="barChart"></canvas>
+                    </div>
                 </div>
-                <div class="col-4 bg-dark ms-3 rounded shadow">
-                    <canvas id="lineChart"></canvas>
+                <div class="col-6 p-0">
+                    <div class="bg-dark rounded shadow chart-container" >
+                        <canvas id="lineChart"></canvas>
+                    </div>
                 </div>
-                <div class="col-3 bg-dark ms-3 rounded shadow">
-                    <canvas id="pieChart"></canvas>
-                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 ps-2" style="position: relative; height:200px; width:826px;">
+                    <div class="bg-dark rounded shadow chart-container pb-2">
+                        <canvas id="pieChart"></canvas>
+                    </div>
             </div>
         </div>
     </main>
+
 
 
 

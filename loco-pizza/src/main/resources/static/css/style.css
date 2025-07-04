@@ -1,5 +1,6 @@
+
 .sidebar {
-      width: 250px;
+      width: 180px;
       min-height: 100vh;
       background-color: #343a40;
       color: white;
@@ -19,13 +20,13 @@
       border-radius: 5px;
     }
     .main-content {
-      margin-left: 250px; /* same as sidebar width */
+      margin-left: 180px; /* same as sidebar width */
     }
 .container{
-    margin-left: 280px;
+    padding-left: 200px;
 }
 .tabella-pizze{
-    margin-left: 290px;
+    padding-left: 200px;
 }
 /* Arrotonda gli angoli della tabella */
 table.rounded-corners {
@@ -49,4 +50,14 @@ table.rounded-corners tbody tr:last-child td:first-child {
 table.rounded-corners tbody tr:last-child td:last-child {
   border-bottom-right-radius: 10px;
 }
+.chart-container {
+  position: relative;
+  width: 380px;
+  height: 200px;
+}
+.container-titolo{
+  padding-left: 200px ;
+}
+
+
 
