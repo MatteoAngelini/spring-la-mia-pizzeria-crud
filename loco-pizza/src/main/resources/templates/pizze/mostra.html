@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.7/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+</head>
+
+<body>
+    <header th:replace="/fragments/navbar :: header-navbar"></header>
+
+    <main th:object="${pizza}">
+        <div class="container-titolo mt-2 mb-3 mx-3 py-2 bg-dark rounded" style="max-width: 500px;">
+            <h3 th:text="*{titolo}" class="text-white"></h3>
+            <p class="text-white">Dettagli della [[*{titolo}]]</p>
+        </div>
+        <div class="card" style="width: 18rem; margin-left: 200px;">
+            <img th:src="*{imageUrl}" alt="Immagine Pizza" width="100px" class="card-img-top">
+            <div class="card-body">
+                <p class="card-text" th:text="*{descrizione}"></p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>Prezzo:</strong> &euro; [[${#numbers.formatDecimal(pizza.prezzo, 1, 2)}]]</li>
+            </ul>
+        </div>
+
+
+    </main>
+
+
+    <script th:src="@{/webjars/bootstrap/5.3.7/js/bootstrap.bundle.min.js}"></script>
+</body>
+
+</html>

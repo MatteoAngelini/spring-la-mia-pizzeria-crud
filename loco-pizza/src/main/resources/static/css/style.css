@@ -27,6 +27,7 @@
 }
 .tabella-pizze{
     padding-left: 200px;
+    padding-right: 20px;
 }
 /* Arrotonda gli angoli della tabella */
 table.rounded-corners {
@@ -58,6 +59,7 @@ table.rounded-corners tbody tr:last-child td:last-child {
 .container-titolo{
   padding-left: 200px ;
 }
+
 
 
 

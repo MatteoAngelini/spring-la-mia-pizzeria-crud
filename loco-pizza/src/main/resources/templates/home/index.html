@@ -54,6 +54,8 @@
         const labels = ['Aggiunte', 'Modificate', 'Eliminate'];
         const dataValues = [aggiunte, modificate, eliminate];
         const colors = ['#4caf50', '#ff9800', '#f44336'];
+        const colorsText = ['#ffffff', '#ffffff', '#ffffff'];
+
 
         // Bar Chart
         const ctxBar = document.getElementById('barChart').getContext('2d');
@@ -64,7 +66,8 @@
                 datasets: [{
                     label: 'Numero pizze',
                     data: dataValues,
-                    backgroundColor: colors
+                    backgroundColor: colors,
+                    color: colorsText
                 }]
             },
             options: {
@@ -84,7 +87,8 @@
                 datasets: [{
                     label: 'Distribuzione pizze',
                     data: dataValues,
-                    backgroundColor: colors
+                    backgroundColor: colors,
+                    color: colorsText
                 }]
             },
             options: { responsive: true }
@@ -101,6 +105,7 @@
                     data: dataValues,
                     borderColor: '#2196f3',
                     backgroundColor: 'rgba(33, 150, 243, 0.2)',
+                    color: colorsText,
                     fill: true,
                     tension: 0.3
                 }]

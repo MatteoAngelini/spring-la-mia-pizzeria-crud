@@ -7,6 +7,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name="pizzas")
@@ -16,16 +19,24 @@ public class Pizza {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+
+    @NotBlank(message = "Il titolo è obbligatorio")
+    @Size(max = 100, message = "Il titolo non può superare i 100 caratteri")
     @Column(name="titles")
     private String titolo;
 
+
+
+    @NotBlank(message = "La descrizione è obbligatoria")
     @Column(name="descriptions")
-    private String description;
+    private String descrizione;
  
     @Lob
     @Column(name="images_url")
     private String imageUrl;
 
+
+    @NotNull(message = "Il prezzo è obbligatorio")
     @Column(name="prices")
     private Double prezzo;
 
@@ -48,12 +59,12 @@ public class Pizza {
         this.titolo = titolo;
     }
 
-    public String getDescription() {
-        return this.description;
+    public String getDescrizione() {
+        return this.descrizione;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescrizione(String descrizione) {
+        this.descrizione = descrizione;
     }
 
     public String getImageUrl() {
