@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.locopizza.https.loco_pizza.model.Offerta;
 import com.locopizza.https.loco_pizza.model.Pizza;
+import com.locopizza.https.loco_pizza.repository.OffertaRepository;
 import com.locopizza.https.loco_pizza.repository.PizzaRepository;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,6 +25,9 @@ public class PizzaController {
     @Autowired
     private PizzaRepository pizzaRepository;
 
+    @Autowired
+    private OffertaRepository offertaRepository;
+
     @GetMapping
     public String index(@RequestParam(value = "keyword", required = false) String keyword, Model model) {
         List<Pizza> pizze;
@@ -31,7 +37,7 @@ public class PizzaController {
             pizze = pizzaRepository.findAll();
         }
         model.addAttribute("pizze", pizze);
-        model.addAttribute("keyword", keyword); 
+        model.addAttribute("keyword", keyword);
         return "/pizze/index";
     }
 
@@ -94,7 +100,14 @@ public class PizzaController {
 
     @PostMapping("/elimina/{id}")
     public String delete(@PathVariable("id") Integer id) {
-        pizzaRepository.deleteById(id);
+        Pizza pizzaDaCancellare = pizzaRepository.findById(id).get();
+
+        for (Offerta offerta : pizzaDaCancellare.getOfferte()) {
+            offertaRepository.delete(offerta);
+        }
+
+        pizzaRepository.delete(pizzaDaCancellare);
+
         return "redirect:/pizze";
     }
 

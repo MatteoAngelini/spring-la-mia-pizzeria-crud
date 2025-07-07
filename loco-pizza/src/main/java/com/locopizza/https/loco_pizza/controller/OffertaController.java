@@ -23,6 +23,7 @@ import com.locopizza.https.loco_pizza.repository.PizzaRepository;
 
 import jakarta.validation.Valid;
 
+
 @Controller
 @RequestMapping("/offerte")
 public class OffertaController {
@@ -34,7 +35,7 @@ public class OffertaController {
     private PizzaRepository pizzaRepository;
 
     @GetMapping("/creazione/{id}")
-    public String creaOfferta(@PathVariable("id") Integer id, Model model) {
+    public String create(@PathVariable("id") Integer id, Model model) {
         Optional<Pizza> pizzaOptional = pizzaRepository.findById(id);
         if (pizzaOptional.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pizza non trovata con ID " + id);
@@ -47,7 +48,7 @@ public class OffertaController {
     }
 
     @PostMapping("/creazione/{id}")
-    public String salvaOfferta(@PathVariable("id") Integer id,
+    public String store(@PathVariable("id") Integer id,
             @Valid @ModelAttribute("offerta") Offerta formOfferta,
             BindingResult bindingResult,
             @RequestParam("azione") String azione,
@@ -77,7 +78,7 @@ public class OffertaController {
     }
 
     @GetMapping("/modifica/{id}")
-    public String modificaOfferta(@PathVariable("id") Integer id, Model model) {
+    public String edit(@PathVariable("id") Integer id, Model model) {
         Offerta offerta = offertaRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Offerta non trovata"));
         Pizza pizza = offerta.getPizza(); // relazione bidirezionale
@@ -93,7 +94,7 @@ public class OffertaController {
     }
 
     @PostMapping("/modifica/{id}")
-    public String aggiornaOfferta(@PathVariable("id") Integer id,
+    public String update(@PathVariable("id") Integer id,
             @ModelAttribute("offerta") Offerta offertaAggiornata) {
         Offerta offertaEsistente = offertaRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Offerta non trovata"));
@@ -105,7 +106,16 @@ public class OffertaController {
 
         offertaRepository.save(offertaEsistente);
 
-        return "redirect:/pizze/" + offertaEsistente.getPizza().getId(); // redirect alla show della pizza
+        return "redirect:/pizze/" + offertaEsistente.getPizza().getId(); 
     }
+
+    @PostMapping("/elimina/{id}")
+    public String delete(@PathVariable("id") Integer id) {
+        
+        offertaRepository.deleteById(id);
+        
+        return "redirect:/pizze";
+    }
+    
 
 }
