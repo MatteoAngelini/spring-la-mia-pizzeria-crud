@@ -1,5 +1,7 @@
 package com.locopizza.https.loco_pizza.model;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,10 +25,10 @@ public class Offerta {
     private String titolo;
 
     @Column(name="starts_data")
-    private String dataInizio;
+    private LocalDateTime dataInizio;
 
     @Column(name="ends_data")
-    private String dataFine;
+    private LocalDateTime dataFine;
 
 
 
@@ -47,19 +49,19 @@ public class Offerta {
         this.titolo = titolo;
     }
 
-    public String getDataInizio() {
+    public LocalDateTime getDataInizio() {
         return this.dataInizio;
     }
 
-    public void setDataInizio(String dataInizio) {
+    public void setDataInizio(LocalDateTime dataInizio) {
         this.dataInizio = dataInizio;
     }
 
-    public String getDataFine() {
+    public LocalDateTime getDataFine() {
         return this.dataFine;
     }
 
-    public void setDataFine(String dataFine) {
+    public void setDataFine(LocalDateTime dataFine) {
         this.dataFine = dataFine;
     }
 
