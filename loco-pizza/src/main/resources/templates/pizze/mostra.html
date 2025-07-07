@@ -7,6 +7,7 @@
     <title></title>
 
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.7/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css}">
     <link rel="stylesheet" th:href="@{/css/style.css}">
 
 </head>
@@ -19,16 +20,90 @@
             <h3 th:text="*{titolo}" class="text-white"></h3>
             <p class="text-white">Dettagli della [[*{titolo}]]</p>
         </div>
-        <div class="card" style="width: 18rem; margin-left: 200px;">
-            <img th:src="*{imageUrl}" alt="Immagine Pizza" width="100px" class="card-img-top">
-            <div class="card-body">
-                <p class="card-text" th:text="*{descrizione}"></p>
+        <div class="row">
+            <div class="card col-6 p-0" style="width: 18rem; margin-left: 200px;">
+                <img th:src="*{imageUrl}" alt="Immagine Pizza" width="100px" class="card-img-top">
+                <div class="card-body">
+                    <p class="card-text" th:text="*{descrizione}"></p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><strong>Prezzo:</strong> &euro; [[${#numbers.formatDecimal(pizza.prezzo,
+                        1,
+                        2)}]]</li>
+                </ul>
             </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item"><strong>Prezzo:</strong> &euro; [[${#numbers.formatDecimal(pizza.prezzo, 1, 2)}]]</li>
-            </ul>
-        </div>
+            <div class="col-6 tabella-pizze rounded">
+                <div class="mb-2"><a th:href="@{/offerte/creazione/{id}(id=${pizza.id})}" class="text-decoration-none mb-2">
+                    <button class="btn btn-md btn-dark">Crea nuova offerta speciale</button>
+                </a></div>
+                
+                <table class="table table-striped table-hover table-bordered rounded-corners" th:object="${offerta}">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Titolo</th>
+                            <th scope="col">Data di inizio</th>
+                            <th scope="col">Data di fine</th>
+                            <th scope="col">Azioni</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="offerta : ${offerte}">
+                            <td th:text="${offerta.id}" class="align-middle text-center">
+                                </th>
+                            <td th:text="${offerta.titolo}" style="font-weight: 700;" class="align-middle text-start">
+                            </td>
+                            <td th:text="${offerta.dataInizio}" class="align-middle text-start"></td>
+                            <td th:text="${offerta.dataFine}" class="align-middle text-start"></td>
+                            <td style="text-align: center;" class="align-middle text-center p-0">
+                                <a th:href="@{/offerte/modifica/{id}(id=${offerta.id})}" class="text-decoration-none">
+                                    <button class="btn btn-sm btn-dark"><i class="bi bi-pencil"></i></button>
+                                </a>
 
+                                <button type="button" class="btn btn-sm btn-dark" data-bs-toggle="modal"
+                                    th:data-bs-target="'#delete-modal-' + ${offerta.id}">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+
+
+
+
+
+
+                                <!-- Modal -->
+                                <div class="modal fade" th:id="'delete-modal-' + ${offerta.id}" data-bs-backdrop="static"
+                                    data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5 text-start" id="staticBackdropLabel">
+                                                    Eliminazione dell'offerta <strong>[[${offerta.titolo}]]</strong></h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p class="text-start">Sei sicuro di voler eliminare l'offerta speciale
+                                                    [[${offerta.titolo}]]?</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary btn-sm"
+                                                    data-bs-dismiss="modal">Chiudi</button>
+                                                <form th:action="@{/offerte/elimina/{id}(id=${offerta.id})}" method="post">
+                                                    <button type="submit" class="btn btn-sm btn-danger">Elimina</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
 
     </main>
 

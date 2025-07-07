@@ -69,6 +69,10 @@ table.rounded-corners tbody tr:last-child td:last-child {
   background-color: #343a40;
   color: white;
 }
+.list-group-item{
+  background-color: #f8f9fa;
+  color: black;
+}
 
 
 

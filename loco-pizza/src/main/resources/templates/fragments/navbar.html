@@ -23,27 +23,33 @@
             <img th:src="@{/img/logo-pizza.png}" alt="Logo Loco Pizza" width="50px" height="50px">
           </a>
           <div>
-          <span style="margin-right: 10px;">
-             <img width="36" height="36" src="https://img.icons8.com/sf-black/64/FFFFFF/settings--v1.png" alt="settings--v1"/>
-          </span>
-          <div class="vr border border-light align-middle border-1" style="height: 40px;"></div>
-          <div class="btn-group" style="margin-right: 80px;">
-            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <img width="48" height="48" th:src="@{https://img.icons8.com/material/48/FFFFFF/user-male-circle--v1.png}"
-                alt="user-male-circle--v1" />
-            </button>
-            <ul class="dropdown-menu dropdown-menu-start">
-              <li><h5 class="dropdown-header">Menù utente</h5></li>
-              <li class="text-center"><img width="48" height="48" th:src="@{https://img.icons8.com/material/48/1A1A1A/user-male-circle--v1.png}"
-                alt="user-male-circle--v1" /></li>
-              <li class="m-2"><strong>Utente:</strong></li>
-              <li class="m-2"><strong>Ruolo:</strong></li>
-              <li><hr class="dropdown-divider"></li>
-              <li class="d-flex justify-content-start m-2">
-                <span class="pe-2"><button class="btn btn-sm btn-success">Accedi</button></span>
-                <span><button class="btn btn-sm btn-secondary">Esci</button></span>
-              </li>
-            </ul>
+            <span style="margin-right: 10px;">
+              <img width="36" height="36" src="https://img.icons8.com/sf-black/64/FFFFFF/settings--v1.png"
+                alt="settings--v1" />
+            </span>
+            <div class="vr border border-light align-middle border-1" style="height: 40px;"></div>
+            <div class="btn-group" style="margin-right: 120px; width: 100px;">
+              <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <img width="48" height="48"
+                  th:src="@{https://img.icons8.com/material/48/FFFFFF/user-male-circle--v1.png}"
+                  alt="user-male-circle--v1" />
+              </button>
+              <ul class="dropdown-menu dropdown-menu-start">
+                <li class="d-flex justify-content-start m-2 align-middle"><img width="48" height="48"
+                    th:src="@{https://img.icons8.com/material/48/1A1A1A/user-male-circle--v1.png}"
+                    alt="user-male-circle--v1" /><span class="dropdown-header align-middle"><strong>Matteo Angelini</strong></span></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li class="m-2 text-secondary"><strong class="text-dark">Ruolo:</strong> Amministratore</li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li class="d-flex justify-content-start m-2">
+                  <span class="pe-2"><button class="btn btn-sm btn-success">Accedi</button></span>
+                  <span><button class="btn btn-sm btn-secondary">Esci</button></span>
+                </li>
+              </ul>
             </div>
           </div>
 

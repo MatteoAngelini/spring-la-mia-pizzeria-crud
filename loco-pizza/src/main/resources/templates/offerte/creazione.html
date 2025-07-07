@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuova Offerta</title>
+
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.7/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+    <header th:replace="/fragments/navbar :: header-navbar"></header>
+
+    <main th:object="${offerta}" class="py-4">
+        <div class="container-titolo mt-2 mb-3 mx-3 bg-dark rounded py-2" style="max-width: 500px;">
+            <h3 class="text-white">Nuova Offerta</h3>
+            <p class="text-white">Creazione di una nuova offerta speciale</p>
+        </div>
+        
+
+        <form class="row g-3" style="margin-left: 300px; margin-right: 100px;" id="offerta-form"
+            th:action="@{/offerte/creazione/{id}(id=${pizza.id})}" method="post" th:object="${offerta}">
+            
+            <div class="col-md-6">
+                <label for="titolo" class="form-label">Titolo</label>
+                <input type="text" th:field="*{titolo}" class="form-control" id="titolo" th:errorClass="is-invalid">
+                <div th:if="${#fields.hasErrors('titolo')}" class="invalid-feedback">
+                    <ul>
+                        <li th:each="err : ${#fields.errors('titolo')}" th:text="${err}"></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <label for="inizio" class="form-label">Data Inizio</label>
+                <input type="datetime-local" th:field="*{dataInizio}" class="form-control" id="inizio" th:errorClass="is-invalid">
+                <div th:if="${#fields.hasErrors('dataInizio')}" class="invalid-feedback">
+                    <ul>
+                        <li th:each="err : ${#fields.errors('dataInizio')}" th:text="${err}"></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <label for="fine" class="form-label">Data Fine</label>
+                <input type="datetime-local" th:field="*{dataFine}" class="form-control" id="fine" th:errorClass="is-invalid">
+                <div th:if="${#fields.hasErrors('dataFine')}" class="invalid-feedback">
+                    <ul>
+                        <li th:each="err : ${#fields.errors('dataFine')}" th:text="${err}"></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between col-md-12">
+                <button type="submit" name="azione" value="save" class="btn btn-success">Salva offerta</button>
+                <button type="submit" name="azione" value="cancel"  class="btn btn-warning">Annulla</button>
+            </div>
+        </form>
+    </main>
+
+    <script th:src="@{/webjars/bootstrap/5.3.7/js/bootstrap.bundle.min.js}"></script>
+</body>
+
+</html>

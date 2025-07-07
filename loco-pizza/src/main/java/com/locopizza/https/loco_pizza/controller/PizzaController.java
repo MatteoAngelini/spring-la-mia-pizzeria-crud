@@ -1,7 +1,6 @@
 package com.locopizza.https.loco_pizza.controller;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,12 +10,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.locopizza.https.loco_pizza.model.Pizza;
 import com.locopizza.https.loco_pizza.repository.PizzaRepository;
-
 import jakarta.validation.Valid;
-
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -27,15 +23,24 @@ public class PizzaController {
     private PizzaRepository pizzaRepository;
 
     @GetMapping
-    public String index(Model model) {
-        List<Pizza> pizze = pizzaRepository.findAll();
+    public String index(@RequestParam(value = "keyword", required = false) String keyword, Model model) {
+        List<Pizza> pizze;
+        if (keyword != null && !keyword.isEmpty()) {
+            pizze = pizzaRepository.findByTitoloContainingIgnoreCase(keyword);
+        } else {
+            pizze = pizzaRepository.findAll();
+        }
         model.addAttribute("pizze", pizze);
+        model.addAttribute("keyword", keyword); // per ripopolare la search bar
         return "/pizze/index";
     }
 
     @GetMapping("/{id}")
     public String show(@PathVariable("id") Integer id, Model model) {
-        model.addAttribute("pizza", pizzaRepository.findById(id).get());
+        Pizza pizza = pizzaRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Pizza non trovata con id: " + id));
+        model.addAttribute("pizza", pizza);
+        model.addAttribute("offerte", pizza.getOfferte());
         return "/pizze/mostra";
     }
 
@@ -52,7 +57,7 @@ public class PizzaController {
 
         if (azione.equals("cancel")) {
 
-            return "/pizze/creazione"; // oppure dove vuoi reindirizzare
+            return "/pizze/creazione";
         }
         if (bindingResult.hasErrors()) {
             return "/pizze/creazione";
@@ -75,7 +80,7 @@ public class PizzaController {
 
         if (azione.equals("cancel")) {
 
-            return "/pizze/modifica"; // oppure dove vuoi reindirizzare
+            return "/pizze/modifica";
         }
         if (bindingResult.hasErrors()) {
 

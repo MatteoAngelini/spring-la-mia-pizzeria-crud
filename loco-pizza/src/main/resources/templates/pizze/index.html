@@ -18,12 +18,21 @@
             <h3>Pizze</h3>
             <p class="text-secondary">Qui sono inserite tutte le pizze esistenti</p>
         </div>
-        <div style="margin-left: 200px;" class="col-8 mb-2 text-start">
-            <a th:href="@{/pizze/creazione}" class="text-decoration-none">
-                <button class="btn btn-md btn-dark">Aggiungi</button>
-            </a>
-        </div>
+
         <div class="col-12 shadow-sm tabella-pizze rounded">
+            <div class="mb-2 text-start">
+                <a th:href="@{/pizze/creazione}" class="text-decoration-none">
+                    <button class="btn btn-md btn-dark">Aggiungi</button>
+                </a>
+            </div>
+            <form class="d-flex mb-2" role="search" method="get" th:action="@{/pizze}">
+                <div class="input-group">
+                    <button class="btn btn-outline-dark" type="submit">
+                        <i class="bi bi-search"></i>
+                    </button>
+                    <input name="keyword" class="form-control" type="search" placeholder="Cerca" aria-label="Cerca" th:value="${keyword}"/>
+                </div>
+            </form>
             <table class="table table-striped table-hover table-bordered rounded-corners" th:object="${pizza}">
                 <thead class="table-dark">
                     <tr>
@@ -47,13 +56,13 @@
                         </td>
                         <td style="text-align: center;" class="align-middle text-center p-0">
                             <a th:href="@{/pizze/{id}(id=${pizza.id})}" class="text-decoration-none">
-                                <button class="btn btn-sm btn-primary"><i class="bi bi-eye"></i></button>
+                                <button class="btn btn-sm btn-dark"><i class="bi bi-eye"></i></button>
                             </a>
                             <a th:href="@{/pizze/modifica/{id}(id=${pizza.id})}" class="text-decoration-none">
-                                <button class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i></button>
+                                <button class="btn btn-sm btn-dark"><i class="bi bi-pencil"></i></button>
                             </a>
 
-                            <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                            <button type="button" class="btn btn-sm btn-dark" data-bs-toggle="modal"
                                 th:data-bs-target="'#delete-modal-' + ${pizza.id}">
                                 <i class="bi bi-trash"></i>
                             </button>
@@ -70,13 +79,15 @@
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h1 class="modal-title fs-5 text-start" id="staticBackdropLabel">Eliminazione della
+                                            <h1 class="modal-title fs-5 text-start" id="staticBackdropLabel">
+                                                Eliminazione della
                                                 pizza <strong>[[${pizza.titolo}]]</strong></h1>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <p class="text-start">Sei sicuro di voler eliminare la pizza [[${pizza.titolo}]]?</p>
+                                            <p class="text-start">Sei sicuro di voler eliminare la pizza
+                                                [[${pizza.titolo}]]?</p>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary btn-sm"
