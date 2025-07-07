@@ -51,14 +51,48 @@
                             <a th:href="@{/pizze/modifica/{id}(id=${pizza.id})}" class="text-decoration-none">
                                 <button class="btn btn-sm btn-warning">Modifica</button>
                             </a>
-                            <button type="button" class="btn btn-sm btn-danger">
+
+                            <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                th:data-bs-target="'#delete-modal-' + ${pizza.id}">
                                 Elimina
                             </button>
+
+
+
+
+
+
+                            <!-- Modal -->
+                            <div class="modal fade" th:id="'delete-modal-' + ${pizza.id}" data-bs-backdrop="static"
+                                data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5 text-start" id="staticBackdropLabel">Eliminazione della
+                                                pizza <strong>[[${pizza.titolo}]]</strong></h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="text-start">Sei sicuro di voler eliminare la pizza [[${pizza.titolo}]]?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary btn-sm"
+                                                data-bs-dismiss="modal">Chiudi</button>
+                                            <form th:action="@{/pizze/elimina/{id}(id=${pizza.id})}" method="post">
+                                                <button type="submit" class="btn btn-sm btn-danger">Elimina</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                         </td>
                     </tr>
                 </tbody>
             </table>
-            
+
         </div>
 
     </main>
