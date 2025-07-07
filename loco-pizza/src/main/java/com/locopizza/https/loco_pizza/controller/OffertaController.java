@@ -1,5 +1,6 @@
 package com.locopizza.https.loco_pizza.controller;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,6 @@ public class OffertaController {
 
     @Autowired
     private PizzaRepository pizzaRepository;
-
 
     @GetMapping("/creazione/{id}")
     public String creaOfferta(@PathVariable("id") Integer id, Model model) {
@@ -74,6 +74,38 @@ public class OffertaController {
         offertaRepository.save(formOfferta);
 
         return "redirect:/pizze/{id}";
+    }
+
+    @GetMapping("/modifica/{id}")
+    public String modificaOfferta(@PathVariable("id") Integer id, Model model) {
+        Offerta offerta = offertaRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Offerta non trovata"));
+        Pizza pizza = offerta.getPizza(); // relazione bidirezionale
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+
+        model.addAttribute("offerta", offerta);
+        model.addAttribute("pizza", pizza);
+        model.addAttribute("dataInizioFormattata", offerta.getDataInizio().format(formatter));
+        model.addAttribute("dataFineFormattata", offerta.getDataFine().format(formatter));
+
+        return "/offerte/modifica";
+    }
+
+    @PostMapping("/modifica/{id}")
+    public String aggiornaOfferta(@PathVariable("id") Integer id,
+            @ModelAttribute("offerta") Offerta offertaAggiornata) {
+        Offerta offertaEsistente = offertaRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Offerta non trovata"));
+
+        // aggiorna solo i campi modificabili
+        offertaEsistente.setTitolo(offertaAggiornata.getTitolo());
+        offertaEsistente.setDataInizio(offertaAggiornata.getDataInizio());
+        offertaEsistente.setDataFine(offertaAggiornata.getDataFine());
+
+        offertaRepository.save(offertaEsistente);
+
+        return "redirect:/pizze/" + offertaEsistente.getPizza().getId(); // redirect alla show della pizza
     }
 
 }

@@ -31,7 +31,7 @@ public class PizzaController {
             pizze = pizzaRepository.findAll();
         }
         model.addAttribute("pizze", pizze);
-        model.addAttribute("keyword", keyword); // per ripopolare la search bar
+        model.addAttribute("keyword", keyword); 
         return "/pizze/index";
     }
 
