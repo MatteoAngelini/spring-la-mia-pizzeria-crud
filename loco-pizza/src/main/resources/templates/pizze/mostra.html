@@ -14,7 +14,7 @@
 <body>
     <header th:replace="/fragments/navbar :: header-navbar"></header>
 
-    <main th:object="${pizza}">
+    <main th:object="${pizza}" class="py-4">
         <div class="container-titolo mt-2 mb-3 mx-3 py-2 bg-dark rounded" style="max-width: 500px;">
             <h3 th:text="*{titolo}" class="text-white"></h3>
             <p class="text-white">Dettagli della [[*{titolo}]]</p>

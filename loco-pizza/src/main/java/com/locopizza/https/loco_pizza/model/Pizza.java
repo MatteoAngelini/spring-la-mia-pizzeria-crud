@@ -1,11 +1,14 @@
 package com.locopizza.https.loco_pizza.model;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -39,6 +42,21 @@ public class Pizza {
     @NotNull(message = "Il prezzo è obbligatorio")
     @Column(name="prices")
     private Double prezzo;
+
+
+
+    @OneToMany(mappedBy = "pizza")
+    private List <Offerta> offerte;
+
+     //Get + Set Offerta
+    public List<Offerta> getOfferte() {
+        return this.offerte;
+    }
+
+    public void setOfferte(List<Offerta> offerte) {
+        this.offerte = offerte;
+    }
+
 
 
     //Get + Set

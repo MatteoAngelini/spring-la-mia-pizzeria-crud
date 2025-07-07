@@ -7,12 +7,13 @@
     <title></title>
 
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.7/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css}">
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 
 <body>
     <header th:replace="/fragments/navbar :: header-navbar"></header>
-    <main>
+    <main class="py-4">
         <div class="container-titolo mt-2 mb-3">
             <h3>Pizze</h3>
             <p class="text-secondary">Qui sono inserite tutte le pizze esistenti</p>
@@ -44,17 +45,17 @@
                         <td th:text="${pizza.descrizione}" class="align-middle text-start"></td>
                         <td class="align-middle text-start">&euro; [[${#numbers.formatDecimal(pizza.prezzo, 1, 2)}]]
                         </td>
-                        <td style="text-align: center;" class="align-middle text-center">
+                        <td style="text-align: center;" class="align-middle text-center p-0">
                             <a th:href="@{/pizze/{id}(id=${pizza.id})}" class="text-decoration-none">
-                                <button class="btn btn-sm btn-primary">Mostra</button>
+                                <button class="btn btn-sm btn-primary"><i class="bi bi-eye"></i></button>
                             </a>
                             <a th:href="@{/pizze/modifica/{id}(id=${pizza.id})}" class="text-decoration-none">
-                                <button class="btn btn-sm btn-warning">Modifica</button>
+                                <button class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i></button>
                             </a>
 
                             <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
                                 th:data-bs-target="'#delete-modal-' + ${pizza.id}">
-                                Elimina
+                                <i class="bi bi-trash"></i>
                             </button>
 
 

@@ -1,8 +1,9 @@
 
 .sidebar {
       width: 180px;
+      margin-top: 62px;
       min-height: 100vh;
-      background-color: #343a40;
+      background-color: #1f2225;
       color: white;
     }
     .sidebar a {
@@ -19,15 +20,20 @@
       color: rgb(255, 217, 0);
       border-radius: 5px;
     }
-    .main-content {
-      margin-left: 180px; /* same as sidebar width */
-    }
+    
 .container{
     padding-left: 200px;
 }
 .tabella-pizze{
     padding-left: 200px;
     padding-right: 20px;
+}
+.navbar{
+  background-color: #343a40;
+  color: white;
+}
+.main-content{
+  height: 56px;
 }
 /* Arrotonda gli angoli della tabella */
 table.rounded-corners {
@@ -58,6 +64,10 @@ table.rounded-corners tbody tr:last-child td:last-child {
 }
 .container-titolo{
   padding-left: 200px ;
+}
+.dropdown-toggle{
+  background-color: #343a40;
+  color: white;
 }
 
 

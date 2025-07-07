@@ -5,28 +5,48 @@
   <header th:fragment="header-navbar">
     <!-- Sidebar -->
     <div class="sidebar position-fixed d-flex flex-column">
-      <h4 class="mb-4 mt-2 ps-3">Dashboard</h4>
       <ul class="nav flex-column">
-        <li class="nav-item"><a th:href="@{/}" class="nav-link active">Home</a></li>
+        <li class="nav-item mt-3"><a th:href="@{/}" class="nav-link active">Home</a></li>
+        <hr>
         <li class="nav-item"><a th:href="@{/pizze}" class="nav-link">Pizze</a></li>
-        <li class="nav-item"><a th:href="@{/offerte}" class="nav-link">Offerte speciali</a></li>
+        <hr>
+        <li class="nav-item"><a th:href="@{/Ingredienti}" class="nav-link">Ingredienti</a></li>
       </ul>
     </div>
 
     <!-- Main content -->
     <div class="main-content">
       <!-- Navbar -->
-      <nav class="navbar navbar-expand-lg bg-secondary-subtle">
+      <nav class="navbar navbar-expand-lg p-0">
         <div class="container-fluid">
           <a class="navbar-brand ps-4 py-0" th:href="@{/}">
-            <img th:src="@{/img/logo-pizza.png}" alt="Logo Loco Pizza" width="80px" height="80px">
+            <img th:src="@{/img/logo-pizza.png}" alt="Logo Loco Pizza" width="50px" height="50px">
           </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
+          <div>
+          <span style="margin-right: 10px;">
+             <img width="36" height="36" src="https://img.icons8.com/sf-black/64/FFFFFF/settings--v1.png" alt="settings--v1"/>
+          </span>
+          <div class="vr border border-light align-middle border-1" style="height: 40px;"></div>
+          <div class="btn-group" style="margin-right: 80px;">
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img width="48" height="48" th:src="@{https://img.icons8.com/material/48/FFFFFF/user-male-circle--v1.png}"
+                alt="user-male-circle--v1" />
+            </button>
+            <ul class="dropdown-menu dropdown-menu-start">
+              <li><h5 class="dropdown-header">Menù utente</h5></li>
+              <li class="text-center"><img width="48" height="48" th:src="@{https://img.icons8.com/material/48/1A1A1A/user-male-circle--v1.png}"
+                alt="user-male-circle--v1" /></li>
+              <li class="m-2"><strong>Utente:</strong></li>
+              <li class="m-2"><strong>Ruolo:</strong></li>
+              <li><hr class="dropdown-divider"></li>
+              <li class="d-flex justify-content-start m-2">
+                <span class="pe-2"><button class="btn btn-sm btn-success">Accedi</button></span>
+                <span><button class="btn btn-sm btn-secondary">Esci</button></span>
+              </li>
+            </ul>
+            </div>
           </div>
+
         </div>
       </nav>
 
