@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -29,6 +31,21 @@ public class Offerta {
 
     @Column(name="ends_data")
     private LocalDateTime dataFine;
+
+    
+    @ManyToOne
+    @JoinColumn(name = "pizza_id", nullable = false)
+    private Pizza pizza;
+
+    //Get + Set Pizza
+    public Pizza getPizza() {
+        return this.pizza;
+    }
+
+    public void setPizza(Pizza pizza) {
+        this.pizza = pizza;
+    }
+
 
 
 
