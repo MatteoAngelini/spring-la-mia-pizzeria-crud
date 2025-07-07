@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.7/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+</head>
+
+<body>
+    <header th:replace="/fragments/navbar :: header-navbar"></header>
+
+    <main th:object="${ingrediente}" class="py-4">
+        <div class="container-titolo mt-2 mb-3 mx-3 bg-dark rounded py-2" style="max-width: 500px;">
+            <h3 class="text-white">Nuovo Ingrediente</h3>
+            <p class="text-white">Creazione di un nuovo ingrediente</p>
+        </div>
+        <form class="row g-3" style="margin-left: 300px; margin-right: 100px;" id="ingrediente-form"
+            th:action="@{/ingredienti/modifica/{id}(id=${ingrediente.id})}" method="post">
+            <div class="col-md-6">
+                <label for="nome" class="form-label">Titolo</label>
+                <input type="text" th:field="*{nome}" class="form-control" id="nome" th:errorClass="is-invalid">
+                <div th:if="${#fields.hasErrors('nome')}" class="invalid-feedback">
+                    <ul>
+                        <li th:each="err : ${#fields.errors('nome')}" th:text="${err}"></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <label for="descrizione" class="form-label">Descrizione</label>
+                <textarea class="form-control" th:field="*{descrizione}" aria-label="es. Pomodoro e basilico"
+                    th:errorClass="is-invalid"></textarea>
+                <div th:if="${#fields.hasErrors('descrizione')}" class="invalid-feedback">
+                    <ul>
+                        <li th:each="err : ${#fields.errors('descrizione')}" th:text="${err}"></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between col-md-12">
+                <button type="submit" name="azione" value="save" class="btn btn-success">Salva modifiche</button>
+                <button type="submit" name="azione" value="cancel"  class="btn btn-warning">Annulla</button>
+            </div>
+        </form>
+
+
+    </main>
+
+
+    <script th:src="@{/webjars/bootstrap/5.3.7/js/bootstrap.bundle.min.js}"></script>
+</body>
+
+</html>

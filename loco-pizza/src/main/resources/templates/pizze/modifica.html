@@ -52,6 +52,20 @@
                     </ul>
                 </div>
             </div>
+             <div>
+                <label for="" class="form-label">Ingredienti</label>
+            </div>
+            <div class="col-md-6" th:each="ingrediente : ${ingredienti}">
+                
+                <input type="checkbox" th:id="'ingrediente' + ${ingrediente.id}"
+                    th:field="*{ingredienti}" th:value="${ingrediente.id}" class="form-check-input">
+                    <label for="" class="form-check-label">[[${ingrediente.nome}]]</label>
+                <div th:if="${#fields.hasErrors('descrizione')}" class="invalid-feedback">
+                    <ul>
+                        <li th:each="err : ${#fields.errors('descrizione')}" th:text="${err}"></li>
+                    </ul>
+                </div>
+            </div>
             <div class="col-md-6">
                 <label for="descrizione" class="form-label">Descrizione</label>
                 <textarea class="form-control" th:field="*{descrizione}" aria-label="es. Pomodoro e basilico"

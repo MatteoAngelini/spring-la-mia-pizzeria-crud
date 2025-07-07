@@ -14,13 +14,6 @@ public class HomeController {
     @GetMapping
     public String getHome(Model model) {
         
-        int aggiunte = 15;   
-        int modificate = 8; 
-        int eliminate = 5;   
-
-        model.addAttribute("aggiunte", aggiunte);
-        model.addAttribute("modificate", modificate);
-        model.addAttribute("eliminate", eliminate);
 
         return "/home/index"; 
     }

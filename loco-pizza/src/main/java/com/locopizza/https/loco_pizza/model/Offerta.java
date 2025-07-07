@@ -23,13 +23,13 @@ public class Offerta {
 
     @NotBlank(message = "Il titolo è obbligatorio")
     @Size(max = 100, message = "Il titolo non può superare i 100 caratteri")
-    @Column(name="titles")
+    @Column(name="title")
     private String titolo;
 
-    @Column(name="starts_data")
+    @Column(name="start_data")
     private LocalDateTime dataInizio;
 
-    @Column(name="ends_data")
+    @Column(name="end_data")
     private LocalDateTime dataFine;
 
     

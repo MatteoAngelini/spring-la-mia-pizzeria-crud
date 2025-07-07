@@ -1,14 +1,16 @@
 package com.locopizza.https.loco_pizza.model;
 
 import java.util.List;
-
+import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
@@ -26,22 +28,22 @@ public class Pizza {
 
     @NotBlank(message = "Il titolo è obbligatorio")
     @Size(max = 100, message = "Il titolo non può superare i 100 caratteri")
-    @Column(name="titles")
+    @Column(name="title")
     private String titolo;
 
 
 
     @NotBlank(message = "La descrizione è obbligatoria")
-    @Column(name="descriptions")
+    @Column(name="description")
     private String descrizione;
  
     @Lob
-    @Column(name="images_url")
+    @Column(name="image_url")
     private String imageUrl;
 
 
     @NotNull(message = "Il prezzo è obbligatorio")
-    @Column(name="prices")
+    @Column(name="price")
     private Double prezzo;
 
 
@@ -57,6 +59,23 @@ public class Pizza {
     public void setOfferte(List<Offerta> offerte) {
         this.offerte = offerte;
     }
+
+    @ManyToMany()
+    @JoinTable(name = "pizza_ingredients",
+            joinColumns = @jakarta.persistence.JoinColumn(name = "pizza_id"),
+            inverseJoinColumns = @jakarta.persistence.JoinColumn(name = "ingredient_id"))
+    private Set<Ingrediente> ingredienti;
+
+    //Get + Set Ingrediente
+
+    public Set<Ingrediente> getIngredienti() {
+        return this.ingredienti;
+    }
+
+    public void setIngredienti(Set<Ingrediente> ingredienti) {
+        this.ingredienti = ingredienti;
+    }
+
 
 
 

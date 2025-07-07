@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.locopizza.https.loco_pizza.model.Offerta;
 import com.locopizza.https.loco_pizza.model.Pizza;
+import com.locopizza.https.loco_pizza.repository.IngredienteRepository;
 import com.locopizza.https.loco_pizza.repository.OffertaRepository;
 import com.locopizza.https.loco_pizza.repository.PizzaRepository;
 import jakarta.validation.Valid;
@@ -27,6 +28,9 @@ public class PizzaController {
 
     @Autowired
     private OffertaRepository offertaRepository;
+
+    @Autowired
+    private IngredienteRepository ingredienteRepository;
 
     @GetMapping
     public String index(@RequestParam(value = "keyword", required = false) String keyword, Model model) {
@@ -54,6 +58,7 @@ public class PizzaController {
     public String create(Model model) {
 
         model.addAttribute("pizza", new Pizza());
+        model.addAttribute("ingredienti", ingredienteRepository.findAll());
         return "/pizze/creazione";
     }
 
@@ -62,10 +67,11 @@ public class PizzaController {
             @RequestParam("azione") String azione) {
 
         if (azione.equals("cancel")) {
-
+            model.addAttribute("ingredienti", ingredienteRepository.findAll());
             return "/pizze/creazione";
         }
         if (bindingResult.hasErrors()) {
+            model.addAttribute("ingredienti", ingredienteRepository.findAll());
             return "/pizze/creazione";
         }
 
@@ -77,6 +83,7 @@ public class PizzaController {
     @GetMapping("/modifica/{id}")
     public String edit(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("pizza", pizzaRepository.findById(id).get());
+        model.addAttribute("ingredienti", ingredienteRepository.findAll());
         return "/pizze/modifica";
     }
 
@@ -85,11 +92,11 @@ public class PizzaController {
             BindingResult bindingResult, Model model, @RequestParam("azione") String azione) {
 
         if (azione.equals("cancel")) {
-
+            model.addAttribute("ingredienti", ingredienteRepository.findAll());
             return "/pizze/modifica";
         }
         if (bindingResult.hasErrors()) {
-
+            model.addAttribute("ingredienti", ingredienteRepository.findAll());
             return "/pizze/modifica";
         }
 
