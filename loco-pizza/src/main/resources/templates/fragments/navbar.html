@@ -58,7 +58,6 @@
                 </li>
 
                 <li class="d-flex justify-content-start m-2">
-                  <span class="pe-2"><a th:href="@{/login}" class="btn btn-sm btn-success">Accedi</a></span>
                   <span><a th:href="@{/logout}" class="btn btn-sm btn-danger">Esci</a></span>
                 </li>
               </ul>
@@ -67,7 +66,7 @@
             <!-- SE NON LOGGATO -->
             <span th:unless="${#authorization.expression('isAuthenticated()')}" >
               <span style="margin-right: 100px; margin-left: 10px;">
-                <a th:href="@{/login}" class="btn btn-success" >Accedi</a>
+                <a th:href="@{/login}" class="btn btn-light" >Accedi</a>
               </span>
   
             </span>
