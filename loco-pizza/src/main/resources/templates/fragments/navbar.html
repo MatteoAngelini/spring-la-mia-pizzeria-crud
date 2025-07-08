@@ -6,9 +6,10 @@
     <!-- Sidebar -->
     <div class="sidebar position-fixed d-flex flex-column">
       <ul class="nav flex-column">
-        <li class="nav-item mt-3 border border-secondary border-bottom-1"><a th:href="@{/}" class="nav-link active">Home</a></li>
-        <li class="nav-item"><a th:href="@{/pizze}" class="nav-link">Pizze</a></li>
-        <li class="nav-item"><a th:href="@{/ingredienti}" class="nav-link">Ingredienti</a></li>
+        <li class="nav-item border-bottom border-secondary"><a th:href="@{/}" class="nav-link active">Home</a></li>
+        <li class="nav-item border-bottom border-secondary"><a th:href="@{/pizze}" class="nav-link">Pizze</a></li>
+        <li class="nav-item border-bottom border-secondary"><a th:href="@{/ingredienti}"
+            class="nav-link">Ingredienti</a></li>
       </ul>
     </div>
 
@@ -22,33 +23,54 @@
           </a>
           <div>
             <span style="margin-right: 10px;">
-              <img width="36" height="36" src="https://img.icons8.com/sf-black/64/FFFFFF/settings--v1.png"
+              <img width="28" height="28" src="https://img.icons8.com/sf-black/64/FFFFFF/settings--v1.png"
                 alt="settings--v1" />
             </span>
             <div class="vr border border-light align-middle border-1" style="height: 40px;"></div>
-            <div class="btn-group" style="margin-right: 120px; width: 100px;">
+            <div th:if="${#authorization.expression('isAuthenticated()')}" class="btn-group"
+              style="margin-right: 120px; width: 100px;">
               <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <img width="48" height="48"
+                <img width="36" height="36"
                   th:src="@{https://img.icons8.com/material/48/FFFFFF/user-male-circle--v1.png}"
                   alt="user-male-circle--v1" />
               </button>
               <ul class="dropdown-menu dropdown-menu-start">
-                <li class="d-flex justify-content-start m-2 align-middle"><img width="48" height="48"
-                    th:src="@{https://img.icons8.com/material/48/1A1A1A/user-male-circle--v1.png}"
-                    alt="user-male-circle--v1" /><span class="dropdown-header align-middle"><strong>Matteo Angelini</strong></span></li>
+                <li class="d-flex justify-content-start m-2 align-middle">
+                  <img width="48" height="48"
+                    th:src="@{https://img.icons8.com/material/48/1A1A1A/user-male-circle--v1.png}" alt="user" />
+                  <span class="dropdown-header align-middle ps-2">
+                    <strong
+                      th:text="${#authentication.principal.nome + ' ' + #authentication.principal.cognome}"></strong>
+                  </span>
+                </li>
+
                 <li>
                   <hr class="dropdown-divider">
                 </li>
-                <li class="m-2 text-secondary"><strong class="text-dark">Ruolo:</strong> Amministratore</li>
+
+                <li class="m-2 text-secondary">
+                  <strong class="text-dark">Ruolo:</strong>
+                  <span th:text="${#strings.listJoin(#authentication.authorities, ', ')}"></span>
+                </li>
+
                 <li>
                   <hr class="dropdown-divider">
                 </li>
+
                 <li class="d-flex justify-content-start m-2">
-                  <span class="pe-2"><button class="btn btn-sm btn-success">Accedi</button></span>
-                  <span><button class="btn btn-sm btn-secondary">Esci</button></span>
+                  <span class="pe-2"><a th:href="@{/login}" class="btn btn-sm btn-success">Accedi</a></span>
+                  <span><a th:href="@{/logout}" class="btn btn-sm btn-danger">Esci</a></span>
                 </li>
               </ul>
+
             </div>
+            <!-- SE NON LOGGATO -->
+            <span th:unless="${#authorization.expression('isAuthenticated()')}" >
+              <span style="margin-right: 100px; margin-left: 10px;">
+                <a th:href="@{/login}" class="btn btn-success" >Accedi</a>
+              </span>
+  
+            </span>
           </div>
 
         </div>

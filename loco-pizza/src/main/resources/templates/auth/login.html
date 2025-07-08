@@ -2,37 +2,65 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Login</title>
-
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.7/css/bootstrap.min.css}" />
     <link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css}">
     <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f9fa;
+        }
+        .login-container {
+            max-width: 900px;
+            width: 100%;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .form-control {
+            border-radius: 0.5rem;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h2>Accedi</h2>
+    <div class="container login-container bg-white row p-0">
+        <!-- Colonna Immagine -->
+        <div class="col-md-6 d-none d-md-block p-0">
+            <img th:src="@{/img/logo-side.jpg}" alt="Immagine copertina" style="width: 400px;">
+        </div>
 
-        <form th:action="@{/login}" method="post">
-            <div>
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required />
-            </div>
-            <div>
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required />
-            </div>
+        <!-- Colonna Form -->
+        <div class="col-md-6 py-4 pe-4">
+            <h3 class="mb-4">Accedi</h3>
 
-            <!-- Messaggio di errore se login fallito -->
-            <div th:if="${param.error}">
-                <p class="text-danger">Credenziali non valide</p>
-            </div>
+            <form th:action="@{/login}" method="post">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" id="username" name="username" class="form-control" required />
+                </div>
 
-            <!-- Messaggio se logout avvenuto -->
-            <div th:if="${param.logout}">
-                <p class="text-success">Logout effettuato</p>
-            </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" id="password" name="password" class="form-control" required />
+                </div>
 
-            <button type="submit">Login</button>
-        </form>
+                <!-- Errori -->
+                <div th:if="${param.error}" class="alert alert-danger">
+                    Credenziali non valide
+                </div>
+
+                <!-- Logout -->
+                <div th:if="${param.logout}" class="alert alert-success">
+                    Logout effettuato con successo
+                </div>
+
+                <button type="submit" class="btn btn-dark w-100">Login</button>
+            </form>
+        </div>
     </div>
 </body>
 </html>
