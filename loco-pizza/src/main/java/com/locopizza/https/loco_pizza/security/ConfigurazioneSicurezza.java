@@ -22,8 +22,9 @@ public class ConfigurazioneSicurezza {
         http
                 .authorizeHttpRequests(requests -> requests
                         .requestMatchers("/css/**", "/js/**", "/img/**", "/login").permitAll()
-                        .requestMatchers("/utente").hasAuthority("Utente")
-                        .requestMatchers("/amministratore").hasAuthority("Amministratore")
+                        .requestMatchers("/pizze").hasAuthority("Amministratore")
+                        .requestMatchers("/ingredienti").hasAuthority("Amministratore")
+                        .requestMatchers("/offerte").hasAuthority("Amministratore")
                         .requestMatchers("/").permitAll()
                         .requestMatchers("/**").permitAll())
                 .formLogin(form -> form

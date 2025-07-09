@@ -46,11 +46,27 @@ public class PizzaController {
     }
 
     @GetMapping("/{id}")
-    public String show(@PathVariable("id") Integer id, Model model) {
+    public String show(@PathVariable("id") Integer id,
+            @RequestParam(value = "keyword", required = false) String keyword,
+            Model model) {
+
         Pizza pizza = pizzaRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Pizza non trovata con id: " + id));
+
+        List<Offerta> offerte;
+
+        if (keyword != null && !keyword.isEmpty()) {
+            offerte = pizza.getOfferte().stream()
+                    .filter(o -> o.getTitolo().toLowerCase().contains(keyword.toLowerCase()))
+                    .toList();
+        } else {
+            offerte = pizza.getOfferte();
+        }
+
+        model.addAttribute("keyword", keyword);
         model.addAttribute("pizza", pizza);
-        model.addAttribute("offerte", pizza.getOfferte());
+        model.addAttribute("offerte", offerte);
+
         return "/pizze/mostra";
     }
 
@@ -114,6 +130,23 @@ public class PizzaController {
         }
 
         pizzaRepository.delete(pizzaDaCancellare);
+
+        return "redirect:/pizze";
+    }
+
+    @PostMapping("/elimina-multiple")
+    public String deleteMultiple(@RequestParam("selectedIds") List<Integer> ids) {
+        for (Integer id : ids) {
+            pizzaRepository.findById(id).ifPresent(pizza -> {
+                // Cancella prima le offerte associate
+                for (Offerta offerta : pizza.getOfferte()) {
+                    offertaRepository.delete(offerta);
+                }
+
+                // Poi cancella la pizza
+                pizzaRepository.delete(pizza);
+            });
+        }
 
         return "redirect:/pizze";
     }

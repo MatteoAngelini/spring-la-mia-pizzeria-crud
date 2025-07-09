@@ -1,32 +1,36 @@
-
 .sidebar {
-      width: 180px;
-      margin-top: 50px;
-      min-height: 100vh;
-      background-color: #1f2225;
-      color: white;
-    }
-    .sidebar a {
-      color: white;
-      text-decoration: none;
-    }
-    .sidebar a:hover {
-      background-color: #4d555e;
-      color: white;
-    }
-    
-
-.tabella-pizze{
-    padding-left: 200px;
-    padding-right: 20px;
+  width: 180px;
+  min-height: 100vh;
+  background-color: #1f2225;
+  color: white;
+  z-index: 2;
 }
-.navbar{
+
+.sidebar a {
+  color: white;
+  text-decoration: none;
+}
+
+.sidebar a:hover {
+  background-color: #4d555e;
+  color: white;
+}
+
+
+.tabella-pizze {
+  padding-left: 200px;
+  padding-right: 20px;
+}
+
+.navbar {
   background-color: #343a40;
   color: white;
 }
-.main-content{
-  height: 56px;
+
+.main-content {
+  height: 50px;
 }
+
 /* Arrotonda gli angoli della tabella */
 table.rounded-corners {
   border-collapse: separate;
@@ -38,6 +42,7 @@ table.rounded-corners {
 table.rounded-corners thead th:first-child {
   border-top-left-radius: 10px;
 }
+
 table.rounded-corners thead th:last-child {
   border-top-right-radius: 10px;
 }
@@ -46,26 +51,82 @@ table.rounded-corners thead th:last-child {
 table.rounded-corners tbody tr:last-child td:first-child {
   border-bottom-left-radius: 10px;
 }
+
 table.rounded-corners tbody tr:last-child td:last-child {
   border-bottom-right-radius: 10px;
 }
+
 .chart-container {
   position: relative;
   width: 380px;
   height: 200px;
 }
-.container-titolo{
-  padding-left: 200px ;
+
+.container-titolo {
+  padding-left: 200px;
 }
-.dropdown-toggle{
+
+.dropdown-toggle-icon {
   background-color: #343a40;
   color: white;
 }
-.list-group-item{
+
+.list-group-item {
   background-color: #f8f9fa;
   color: black;
 }
 
+.content-title {
+  background-color: #eeeeee;
+  border-bottom: #2c2c2c;
+  border: 1px;
+  height: 60px;
+  width: 100%;
+  position: fixed;
+  top: 50px;
+  z-index: 1;
+}
 
+.title {
+  color: rgb(29, 29, 29);
+  font-weight: 500;
+  padding-left: 200px;
 
+}
 
+.clickable-row {
+  cursor: pointer;
+}
+
+.breadcrumb-item a {
+  color: #4d555e;
+  
+  text-decoration: none;
+  
+}
+
+.breadcrumb-item a:hover{
+  color: rgb(189, 0, 0);
+ 
+  text-decoration: none;
+}
+.breadcrumb-item a:active {
+  color: #4d555e;
+ 
+  text-decoration: none;
+}
+
+.breadcrumb-item.active {
+  color: rgb(189, 0, 0);
+  
+}
+.dropdown-toggle {
+  background-color: #eeeeee;
+  color: rgb(22, 22, 22);
+  border: 0px;
+}
+.pizza-icon a:hover{
+  background-color: rgb(133, 138, 145);
+  border-radius: 50%;
+  
+}

@@ -98,12 +98,34 @@ public class IngredienteController {
     public String delete(@PathVariable("id") Integer id) {
 
         Ingrediente ingredienteDaCancellare = ingredienteRepository.findById(id).get();
-        for(Pizza pizza : ingredienteDaCancellare.getPizze()) {
+        for (Pizza pizza : ingredienteDaCancellare.getPizze()) {
             pizza.getIngredienti().remove(ingredienteDaCancellare);
         }
-        
+
         ingredienteRepository.deleteById(id);
-        
+
+        return "redirect:/ingredienti";
+    }
+
+    @PostMapping("/elimina-multiple")
+    public String deleteMultiple(@RequestParam("selectedIds") List<Integer> ids) {
+
+        for (Integer id : ids) {
+            Optional<Ingrediente> optionalIngrediente = ingredienteRepository.findById(id);
+
+            if (optionalIngrediente.isPresent()) {
+                Ingrediente ingrediente = optionalIngrediente.get();
+
+                // Rimuovi l'ingrediente da ogni pizza
+                for (Pizza pizza : ingrediente.getPizze()) {
+                    pizza.getIngredienti().remove(ingrediente);
+                }
+
+                // Elimina l'ingrediente
+                ingredienteRepository.deleteById(id);
+            }
+        }
+
         return "redirect:/ingredienti";
     }
 

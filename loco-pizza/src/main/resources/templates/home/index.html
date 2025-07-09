@@ -13,21 +13,87 @@
 </head>
 
 <body>
-    <header th:replace="/fragments/navbar :: header-navbar"></header>
+    <div th:replace="/fragments/navbar :: header-navbar"></div>
+    <!-- Sidebar -->
+    <div class="sidebar position-fixed d-flex flex-column">
+        <ul class="nav flex-column">
+            <li class="nav-item border-bottom border-secondary"><a th:href="@{/}" class="nav-link active">Dashboard</a></li>
+            <li class="nav-item border-bottom border-secondary"><a th:href="@{/pizze}" class="nav-link">Pizze</a></li>
+        </ul>
+    </div>
 
-    <main class="py-4">
-        <div class="container-fluid mt-3" style="padding-left: 200px;">
-            <h1>Dashboard Loco Pizza</h1>
-            <p class="mb-4 text-secondary">Info pizzeria</p>
-        </div>
+    <main>
         <div class="container-fluid">
-            <div class="row row-cols-2">
-                <div class="col">
-
+            <div class="row shadow">
+                <div class="col-12 bg-danger shadow-bottom" style="height: 250px;">
+                    <h1 style="padding-left: 200px; padding-top: 30px;" class="text-white">Pizzeria Moderna</h1>
+                    <div class="container" style="margin-left: 200px; max-width: 800px;">
+                        <div class="row">
+                            <div class="col me-4">
+                                <hr class="border border-light border-1">
+                                <div class="row-col-1 d-flex align-items-center justify-content-between">
+                                    <span class="text-white" style="font-size: 18px; font-weight: 600;">Pizze</span>
+                                    <span class="text-white" style="font-size: 18px; font-weight: 600;">0</span>
+                                </div>
+                                <hr class="border border-light border-1">
+                                <div class="row-col-1 d-flex align-items-center justify-content-between">
+                                    <span class="text-white"
+                                        style="font-size: 18px; font-weight: 600;">Ingredienti</span>
+                                    <span class="text-white" style="font-size: 18px; font-weight: 600;">0</span>
+                                </div>
+                                <hr class="border border-light border-1">
+                            </div>
+                            <div class="col">
+                                <hr class="border border-light border-1">
+                                <div class="row-col-1 d-flex align-items-center justify-content-between">
+                                    <span class="text-white" style="font-size: 18px; font-weight: 600;">Utenti</span>
+                                    <span class="text-white" style="font-size: 18px; font-weight: 600;">0</span>
+                                </div>
+                                <hr class="border border-light border-1">
+                            </div>
+                            <div class="col"></div>
+                        </div>
+                    </div>
 
                 </div>
-                <div class="col pe-4 align-items-end d-flex justify-content-end ">
-                    <div class="card text-bg-light" style="max-width: 28rem;">
+            </div>
+
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12" style="height: 250px; padding-left: 190px;">
+                    <div class="row" style="height: 300px;">
+                        <div class="col border border-start-0 border-secondary-subtle ">
+                        </div>
+                        <div class="col border border-start-0 border-secondary-subtle">
+                        </div>
+                        <div class="col border border-start-0 border-secondary-subtle ">
+                        </div>
+                        <div class="col border border-start-0 border-secondary-subtle ">
+                        </div>
+                        <div class="col border border-start-0 border-secondary-subtle ">
+                        </div>
+                        <div class="col border border-start-0 border-secondary-subtle">
+                        </div>
+                        <div class="col border border-start-0 border-secondary-subtle ">
+                        </div>
+                        <div class="col border border-start-0 border-secondary-subtle">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+
+    <script th:src="@{/webjars/bootstrap/5.3.7/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+
+</html>
+<!-- <div class="card text-bg-light" style="max-width: 28rem;">
                         <div class="card-body p-2">
                             <h5 class="card-title ps-2 pt-3">Contatti</h5>
                             <ul class="list-group list-group-flush">
@@ -43,19 +109,4 @@
                                 </li>
                             </ul>
                         </div>
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-    </main>
-
-
-
-
-    <script th:src="@{/webjars/bootstrap/5.3.7/js/bootstrap.bundle.min.js}"></script>
-
-</body>
-
-</html>
+                    </div> -->

@@ -7,18 +7,34 @@
     <title></title>
 
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.7/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css}">
     <link rel="stylesheet" th:href="@{/css/style.css}">
 
 </head>
 
 <body>
     <header th:replace="/fragments/navbar :: header-navbar"></header>
+     <!-- Sidebar -->
+    <div class="sidebar position-fixed d-flex flex-column">
+      <ul class="nav flex-column">
+        <li class="nav-item border-bottom border-secondary"><a th:href="@{/ingredienti}"
+            class="nav-link">Ingredienti</a></li>
+      </ul>
+    </div>
+    <header class="content-title d-flex align-items-center justify-content-between" th:object="${pizza}">
+        <h3 class="title">Nuova pizza</h3>
+    </header>
+    <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;); margin-top: 70px; padding-left: 200px;"
+        aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item text-decoration-none"><a th:href="@{/}">Home</a></li>
+            <li class="breadcrumb-item text-decoration-none"><a th:href="@{/pizze}">Pizze</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Nuova pizza</li>
+        </ol>
+    </nav>
 
     <main th:object="${pizza}" class="py-4">
-        <div class="container-titolo mt-2 mb-3 mx-3 bg-dark rounded py-2" style="max-width: 500px;">
-            <h3 class="text-white">Nuova Pizza</h3>
-            <p class="text-white">Creazione di una nuova pizza da aggiungere all'elenco</p>
-        </div>
+        
         <form class="row g-3" style="margin-left: 300px; margin-right: 100px;" id="pizza-form"
             th:action="@{/pizze/creazione}" method="post">
             <div class="col-md-6">

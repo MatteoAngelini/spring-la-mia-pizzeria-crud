@@ -23,7 +23,6 @@ import com.locopizza.https.loco_pizza.repository.PizzaRepository;
 
 import jakarta.validation.Valid;
 
-
 @Controller
 @RequestMapping("/offerte")
 public class OffertaController {
@@ -60,7 +59,7 @@ public class OffertaController {
         }
 
         if (azione.equals("cancel")) {
-            return "/offerte/creazione";
+            return "redirect:/pizze/" + id;
         }
 
         if (bindingResult.hasErrors()) {
@@ -68,13 +67,12 @@ public class OffertaController {
             return "/offerte/creazione";
         }
 
-        // Collega la pizza all'offerta
         formOfferta.setPizza(pizzaOptional.get());
-        formOfferta.setId(null); // Forza creazione nuova offerta (non aggiornamento!)
+        formOfferta.setId(null); // Per assicurarti che venga salvata come nuova
 
         offertaRepository.save(formOfferta);
 
-        return "redirect:/pizze/{id}";
+        return "redirect:/pizze/" + id;
     }
 
     @GetMapping("/modifica/{id}")
@@ -106,16 +104,15 @@ public class OffertaController {
 
         offertaRepository.save(offertaEsistente);
 
-        return "redirect:/pizze/" + offertaEsistente.getPizza().getId(); 
+        return "redirect:/pizze/" + offertaEsistente.getPizza().getId();
     }
 
     @PostMapping("/elimina/{id}")
     public String delete(@PathVariable("id") Integer id) {
-        
+
         offertaRepository.deleteById(id);
-        
+
         return "redirect:/pizze";
     }
-    
 
 }
