@@ -15,21 +15,21 @@
 <body>
     <div th:replace="/fragments/navbar :: header-navbar"></div>
     <!-- Sidebar -->
-    <div class="sidebar position-fixed d-flex flex-column">
+    <div class="sidebar position-fixed d-flex flex-column border-end border-secondary-subtle">
         <ul class="nav flex-column">
-            <li class="nav-item border-bottom border-secondary"><a th:href="@{/}" class="nav-link active">Dashboard</a></li>
-            <li class="nav-item border-bottom border-secondary"><a th:href="@{/pizze}" class="nav-link">Pizze</a></li>
+            <li class="nav-item border-bottom border-secondary-subtle"><a th:href="@{/}" class="nav-link active"><i class="bi bi-bar-chart-fill w-2" ></i> Dashboard</a>
+            </li>
         </ul>
     </div>
 
     <main>
         <div class="container-fluid">
             <div class="row shadow">
-                <div class="col-12 bg-danger shadow-bottom" style="height: 250px;">
-                    <h1 style="padding-left: 200px; padding-top: 30px;" class="text-white">Pizzeria Moderna</h1>
-                    <div class="container" style="margin-left: 200px; max-width: 800px;">
+                <div class="col-8 dashboard-color shadow-bottom" style="height: 250px; padding-left: 190px;">
+                    <h1 style="padding-top: 30px; padding-left: 10px;" class="text-white">Pizzeria Moderna</h1>
+                    <div class="container m-0" style="max-width: 800px;">
                         <div class="row">
-                            <div class="col me-4">
+                            <div class="col me-2">
                                 <hr class="border border-light border-1">
                                 <div class="row-col-1 d-flex align-items-center justify-content-between">
                                     <span class="text-white" style="font-size: 18px; font-weight: 600;">Pizze</span>
@@ -43,45 +43,314 @@
                                 </div>
                                 <hr class="border border-light border-1">
                             </div>
-                            <div class="col">
+                            <div class="col me-2">
                                 <hr class="border border-light border-1">
                                 <div class="row-col-1 d-flex align-items-center justify-content-between">
-                                    <span class="text-white" style="font-size: 18px; font-weight: 600;">Utenti</span>
+                                    <span class="text-white" style="font-size: 18px; font-weight: 600;">Offerte</span>
                                     <span class="text-white" style="font-size: 18px; font-weight: 600;">0</span>
                                 </div>
                                 <hr class="border border-light border-1">
                             </div>
-                            <div class="col"></div>
+                            <div class="col">
+                                <hr class="border border-light border-1">
+                                <div class="row-col-1 d-flex align-items-center justify-content-between">
+                                    <span class="text-white"
+                                        style="font-size: 18px; font-weight: 600;">Utenti</span>
+                                    <span class="text-white" style="font-size: 18px; font-weight: 600;">2</span>
+                                </div>
+                                <hr class="border border-light border-1">
+                                <div class="row-col-1 d-flex align-items-center justify-content-between">
+                                    <span class="text-white"
+                                        style="font-size: 18px; font-weight: 600;">Ruoli</span>
+                                    <span class="text-white" style="font-size: 18px; font-weight: 600;">0</span>
+                                </div>
+                                <hr class="border border-light border-1">
+                            </div>
                         </div>
                     </div>
 
+                </div>
+                <div class="col-4 p-0">
+                    <img th:src="@{/img/immagine-pizza.jpg}" alt="Pizza" width="100%" height="250px"
+                        style="object-fit: cover; width: 100%; height: 250px;">
                 </div>
             </div>
 
         </div>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12" style="height: 250px; padding-left: 190px;">
-                    <div class="row" style="height: 300px;">
+                <div class="col-12" style="height: 368px; padding-left: 190px;">
+                    <div class="row" style="height: 368px;">
                         <div class="col border border-start-0 border-secondary-subtle ">
+                            <div class="row" style="height: 75px;">
+                                <div class="col text-center">
+                                    <img width="32" height="32"
+                                        th:src="@{https://img.icons8.com/ios-filled/50/000000/pizza.png} " alt="pizza"
+                                        style="margin-top: 40px;" />
+                                </div>
+                            </div>
+                            <hr class="mx-auto" style="width: 70%;">
+                            <div class="row" style="height: 90px;">
+                                <div class="col text-center"
+                                    style="margin-top: 20px; color: rgb(82, 82, 82); font-weight: 400;">
+                                    <h2>10</h2>
+                                </div>
+                            </div>
+                            <div class="row" style="height: 60px;">
+                                <div class="col text-center" style="color: rgb(82, 82, 82);">
+                                    <h4>Pizze</h4>
+                                </div>
+                            </div>
+                            <hr class="mx-auto" style="width: 70%;">
+                            <div class="row" style="height: 75px;">
+                                <div class="col text-center">
+                                    <p style="font-size: 12px;  font-weight: 700;" class="badge bg-danger">
+                                        10 Da definire
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                         <div class="col border border-start-0 border-secondary-subtle">
+                            <div class="row" style="height: 75px;">
+                                <div class="col text-center">
+                                    <img width="32" height="32"
+                                        src="https://img.icons8.com/ios-filled/50/1A1A1A/tomato.png" alt="tomato"
+                                        style="margin-top: 40px;" />
+                                </div>
+                            </div>
+                            <hr class="mx-auto" style="width: 70%;">
+                            <div class="row" style="height: 90px;">
+                                <div class="col text-center"
+                                    style="margin-top: 20px; color: rgb(82, 82, 82); font-weight: 400;">
+                                    <h2>8</h2>
+                                </div>
+                            </div>
+                            <div class="row" style="height: 60px;">
+                                <div class="col text-center" style="color: rgb(82, 82, 82);">
+                                    <h4>Ingredienti</h4>
+                                </div>
+                            </div>
+                            <hr class="mx-auto" style="width: 70%;">
+                            <div class="row" style="height: 75px;">
+                                <div class="col text-center">
+                                    <p style="font-size: 12px;  font-weight: 700;" class="badge bg-danger">
+                                        22 Da definire
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                         <div class="col border border-start-0 border-secondary-subtle ">
+                            <div class="row" style="height: 75px;">
+                                <div class="col text-center">
+                                    <img width="36" height="36"
+                                        src="https://img.icons8.com/sf-regular-filled/48/1A1A1A/group-foreground-selected.png"
+                                        alt="group-foreground-selected" style="margin-top: 40px;" />
+                                </div>
+                            </div>
+                            <hr class="mx-auto" style="width: 70%;">
+                            <div class="row" style="height: 90px;">
+                                <div class="col text-center"
+                                    style="margin-top: 20px; color: rgb(82, 82, 82); font-weight: 400;">
+                                    <h2>2</h2>
+                                </div>
+                            </div>
+                            <div class="row" style="height: 60px;">
+                                <div class="col text-center" style="color: rgb(82, 82, 82);">
+                                    <h4>Utenti</h4>
+                                </div>
+                            </div>
+                            <hr class="mx-auto" style="width: 70%;">
+                            <div class="row" style="height: 75px;">
+                                <div class="col text-center">
+                                    <p style="font-size: 12px;  font-weight: 700;" class="badge bg-danger">
+                                        0 Da definire
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                         <div class="col border border-start-0 border-secondary-subtle ">
+                            <div class="row" style="height: 75px;">
+                                <div class="col text-center">
+                                    <img width="32" height="32"
+                                        src="https://img.icons8.com/ios-filled/50/1A1A1A/discount--v1.png"
+                                        alt="discount--v1" style="margin-top: 40px;" />
+                                </div>
+                            </div>
+                            <hr class="mx-auto" style="width: 70%;">
+                            <div class="row" style="height: 90px;">
+                                <div class="col text-center"
+                                    style="margin-top: 20px; color: rgb(82, 82, 82); font-weight: 400;">
+                                    <h2>0</h2>
+                                </div>
+                            </div>
+                            <div class="row" style="height: 60px;">
+                                <div class="col text-center" style="color: rgb(82, 82, 82);">
+                                    <h4>Offerte</h4>
+                                </div>
+                            </div>
+                            <hr class="mx-auto" style="width: 70%;">
+                            <div class="row" style="height: 75px;">
+                                <div class="col text-center">
+                                    <p style="font-size: 12px;  font-weight: 700;" class="badge bg-danger">
+                                        0 Da definire
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                         <div class="col border border-start-0 border-secondary-subtle ">
+                            <div class="row" style="height: 75px;">
+                                <div class="col text-center">
+                                    <img width="32" height="32"
+                                        src="https://img.icons8.com/ios-filled/50/1A1A1A/more.png" alt="more"
+                                        style="margin-top: 40px;" />
+                                </div>
+                            </div>
+                            <hr class="mx-auto" style="width: 70%;">
+                            <div class="row" style="height: 90px;">
+                                <div class="col text-center"
+                                    style="margin-top: 20px; color: rgb(82, 82, 82); font-weight: 400;">
+                                    <h2>0</h2>
+                                </div>
+                            </div>
+                            <div class="row" style="height: 60px;">
+                                <div class="col text-center" style="color: rgb(82, 82, 82);">
+                                    <h4>Altro</h4>
+                                </div>
+                            </div>
+                            <hr class="mx-auto" style="width: 70%;">
+                            <div class="row" style="height: 75px;">
+                                <div class="col text-center">
+                                    <p style="font-size: 12px;  font-weight: 700;" class="badge bg-danger">
+                                        0 Da definire
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                         <div class="col border border-start-0 border-secondary-subtle">
+                            <div class="row" style="height: 75px;">
+                                <div class="col text-center">
+                                    <img width="32" height="32"
+                                        src="https://img.icons8.com/ios-filled/50/1A1A1A/more.png" alt="more"
+                                        style="margin-top: 40px;" />
+                                </div>
+                            </div>
+                            <hr class="mx-auto" style="width: 70%;">
+                            <div class="row" style="height: 90px;">
+                                <div class="col text-center"
+                                    style="margin-top: 20px; color: rgb(82, 82, 82); font-weight: 400;">
+                                    <h2>0</h2>
+                                </div>
+                            </div>
+                            <div class="row" style="height: 60px;">
+                                <div class="col text-center" style="color: rgb(82, 82, 82);">
+                                    <h4>Altro</h4>
+                                </div>
+                            </div>
+                            <hr class="mx-auto" style="width: 70%;">
+                            <div class="row" style="height: 75px;">
+                                <div class="col text-center">
+                                    <p style="font-size: 12px;  font-weight: 700;" class="badge bg-danger">
+                                        0 Da definire
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                         <div class="col border border-start-0 border-secondary-subtle ">
+                            <div class="row" style="height: 75px;">
+                                <div class="col text-center">
+                                    <img width="32" height="32"
+                                        src="https://img.icons8.com/ios-filled/50/1A1A1A/more.png" alt="more"
+                                        style="margin-top: 40px;" />
+                                </div>
+                            </div>
+                            <hr class="mx-auto" style="width: 70%;">
+                            <div class="row" style="height: 90px;">
+                                <div class="col text-center"
+                                    style="margin-top: 20px; color: rgb(82, 82, 82); font-weight: 400;">
+                                    <h2>0</h2>
+                                </div>
+                            </div>
+                            <div class="row" style="height: 60px;">
+                                <div class="col text-center" style="color: rgb(82, 82, 82);">
+                                    <h4>Altro</h4>
+                                </div>
+                            </div>
+                            <hr class="mx-auto" style="width: 70%;">
+                            <div class="row" style="height: 75px;">
+                                <div class="col text-center">
+                                    <p style="font-size: 12px; font-weight: 700;" class="badge bg-danger">
+                                        0 Da definire
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                         <div class="col border border-start-0 border-secondary-subtle">
+                            <div class="row" style="height: 75px;">
+                                <div class="col text-center">
+                                    <img width="32" height="32"
+                                        src="https://img.icons8.com/ios-filled/50/1A1A1A/more.png" alt="more"
+                                        style="margin-top: 40px;" />
+                                </div>
+                            </div>
+                            <hr class="mx-auto" style="width: 70%;">
+                            <div class="row" style="height: 90px;">
+                                <div class="col text-center"
+                                    style="margin-top: 20px; color: rgb(82, 82, 82); font-weight: 400;">
+                                    <h2>0</h2>
+                                </div>
+                            </div>
+                            <div class="row" style="height: 60px;">
+                                <div class="col text-center" style="color: rgb(82, 82, 82);">
+                                    <h4>Altro</h4>
+                                </div>
+                            </div>
+                            <hr class="mx-auto" style="width: 70%;">
+                            <div class="row" style="height: 75px;">
+                                <div class="col text-center">
+                                    <p style="font-size: 12px; font-weight: 700;" class="badge bg-danger">
+                                        0 Da definire
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="container-fluid" style="height: 400px; padding-left: 190px;">
+
+            <div class="row" style="height: 50px;">
+                <div class="col-6 d-flex justify-content-start align-items-center border-end border-secondary-subtle" style="height: 50px;">
+                    <h5>Notifiche</h3>
+                </div>
+
+                <div class="col-6 d-flex justify-content-start align-items-center" style="height: 50px;">
+                    <h5>Scadenze offerte</h3>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-6 border-end border-bottom border-secondary-subtle d-flex justify-content-center align-items-center">
+
+
+                    <div class="container-fluid border border-2 border-danger border rounded bg-danger-subtle shadow" style="height: 300px; margin-bottom: 20px; ">
+
+
+                    </div>
+                </div>
+                <div class="col-6 border-end border-bottom border-secondary-subtle d-flex justify-content-center align-items-center">
+
+
+                    <div class="container-fluid border border-2 border-danger border rounded bg-danger-subtle shadow" style="height: 300px; margin-bottom: 20px;">
+
+
+                    </div>
+
+
+                </div>
+            </div>
+
         </div>
     </main>
 

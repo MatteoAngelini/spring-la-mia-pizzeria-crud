@@ -14,13 +14,13 @@
 <body>
     <header th:replace="/fragments/navbar :: header-navbar"></header>
     <!-- Sidebar -->
-    <div class="sidebar position-fixed d-flex flex-column">
+    <div class="sidebar position-fixed d-flex flex-column border-end border-secondary-subtle">
       <ul class="nav flex-column">
-        <li class="nav-item border-bottom border-secondary"><a th:href="@{/ingredienti}"
-            class="nav-link">Ingredienti</a></li>
+        <li class="nav-item border-bottom border-secondary-subtle"><a th:href="@{/ingredienti}"
+            class="nav-link"><i class="bi bi-egg-fill w-2"></i> Ingredienti</a></li>
       </ul>
     </div>
-    <header class="content-title d-flex align-items-center justify-content-between" th:object="${pizza}">
+    <header class="content-title d-flex align-items-center justify-content-between border-bottom border-secondary-subtle" th:object="${pizza}">
         <h3 class="title">Nuova offerta per la pizza [[*{titolo}]]</h3>
         <div style="margin-right: 60px;">
             <a th:href="@{/pizze/modifica/{id}(id=${pizza.id})}" id="edit-btn" class="text-decoration-none disabled me-2">

@@ -15,13 +15,13 @@
 <body>
     <header th:replace="/fragments/navbar :: header-navbar"></header>
     <!-- Sidebar -->
-    <div class="sidebar position-fixed d-flex flex-column">
+    <div class="sidebar position-fixed d-flex flex-column border-end border-secondary-subtle">
         <ul class="nav flex-column">
-            <li class="nav-item border-bottom border-secondary"><a th:href="@{/ingredienti}"
-                    class="nav-link">Ingredienti</a></li>
+            <li class="nav-item border-bottom border-secondary-subtle"><a th:href="@{/ingredienti}"
+                    class="nav-link"><i class="bi bi-egg-fill w-2"></i> Ingredienti</a></li>
         </ul>
     </div>
-    <header class="content-title d-flex align-items-center justify-content-between" th:object="${pizza}">
+    <header class="content-title d-flex align-items-center justify-content-between border-bottom border-secondary-subtle" th:object="${pizza}">
         <h3 class="title">Pizze</h3>
         <div style="margin-right: 60px;">
             <a th:href="@{/offerte/creazione/{id}(id=${pizza.id})}" class="text-decoration-none me-1">
@@ -72,7 +72,7 @@
                     </div>
                 </div>
 
-                <div class="col-8 p-3 rounded">
+                <div class="col-8 p-3 rounded" th:if="${offerte != null and !offerte.isEmpty()}">
                     <form method="get" th:action="@{/pizze/{id}(id=${pizza.id})}" class="mb-3 d-flex" role="search">
                         <div class="input-group">
                             <button class="btn btn-outline-dark" type="submit" style="z-index: 0;">
@@ -104,7 +104,8 @@
                                 <td th:text="${offerta.dataInizio}" class="align-middle text-start"></td>
                                 <td th:text="${offerta.dataFine}" class="align-middle text-start"></td>
                                 <td style="text-align: center;" class="align-middle text-center">
-                                    <a class="btn btn-sm btn-dark" th:href="@{/offerte/modifica/{id}(id=${offerta.id})}">
+                                    <a class="btn btn-sm btn-dark"
+                                        th:href="@{/offerte/modifica/{id}(id=${offerta.id})}">
                                         <i class="bi bi-pen"></i>
                                     </a>
                                     <a class="btn btn-sm btn-dark" data-bs-toggle="modal"
@@ -154,6 +155,9 @@
                         </tbody>
                     </table>
 
+                </div>
+                <div class="col-8 d-flex align-items-center justify-content-center" th:unless="${offerte != null and !offerte.isEmpty()}">
+                    <p class="text-center text-muted">Non ci sono offerte speciali salvate attualmente.</p>
                 </div>
             </div>
         </div>

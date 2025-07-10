@@ -1,8 +1,8 @@
 package com.locopizza.https.loco_pizza.controller;
 
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -15,12 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
-
 import com.locopizza.https.loco_pizza.model.Offerta;
 import com.locopizza.https.loco_pizza.model.Pizza;
 import com.locopizza.https.loco_pizza.repository.OffertaRepository;
 import com.locopizza.https.loco_pizza.repository.PizzaRepository;
-
 import jakarta.validation.Valid;
 
 @Controller
@@ -32,6 +30,19 @@ public class OffertaController {
 
     @Autowired
     private PizzaRepository pizzaRepository;
+
+    @GetMapping
+    public String index(@RequestParam(value = "keyword", required = false) String keyword, Model model) {
+        List<Offerta> offerte;
+        if (keyword != null && !keyword.isEmpty()) {
+            offerte = offertaRepository.findByTitoloContainingIgnoreCase(keyword);
+        } else {
+            offerte = offertaRepository.findAll();
+        }
+        model.addAttribute("offerte", offerte);
+        model.addAttribute("keyword", keyword);
+        return "offerte/index";
+    }
 
     @GetMapping("/creazione/{id}")
     public String create(@PathVariable("id") Integer id, Model model) {
@@ -113,6 +124,27 @@ public class OffertaController {
         offertaRepository.deleteById(id);
 
         return "redirect:/pizze";
+    }
+
+    @PostMapping("/elimina-multiple")
+    public String deleteMultiple(@RequestParam("selectedIds") List<Integer> ids) {
+
+        for (Integer id : ids) {
+            Optional<Offerta> optionalOfferta = offertaRepository.findById(id);
+
+            if (optionalOfferta.isPresent()) {
+                Offerta offerta = optionalOfferta.get();
+
+                Pizza pizza = offerta.getPizza();
+                if (pizza != null) {
+                    pizza.getOfferte().remove(offerta);
+                }
+
+                offertaRepository.deleteById(id);
+            }
+        }
+
+        return "redirect:/offerte";
     }
 
 }

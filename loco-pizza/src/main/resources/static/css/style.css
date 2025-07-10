@@ -1,19 +1,20 @@
 .sidebar {
   width: 180px;
   min-height: 100vh;
-  background-color: #1f2225;
-  color: white;
+  background-color: #fcfcfc;
+  color: #9c9c9c;
   z-index: 2;
 }
 
 .sidebar a {
-  color: white;
+  color: #9c9c9c;
+  font-weight: 600;
   text-decoration: none;
 }
 
 .sidebar a:hover {
-  background-color: #4d555e;
-  color: white;
+  background-color: #b4b4b4;
+  color: rgb(0, 0, 0);
 }
 
 
@@ -23,8 +24,8 @@
 }
 
 .navbar {
-  background-color: #343a40;
-  color: white;
+  background-color: #fcfcfc;
+  color: rgb(184, 184, 184);
 }
 
 .main-content {
@@ -100,33 +101,100 @@ table.rounded-corners tbody tr:last-child td:last-child {
 
 .breadcrumb-item a {
   color: #4d555e;
-  
+
   text-decoration: none;
-  
+
 }
 
-.breadcrumb-item a:hover{
+.breadcrumb-item a:hover {
   color: rgb(189, 0, 0);
- 
+
   text-decoration: none;
 }
+
 .breadcrumb-item a:active {
   color: #4d555e;
- 
+
   text-decoration: none;
 }
 
 .breadcrumb-item.active {
   color: rgb(189, 0, 0);
-  
+
 }
+
 .dropdown-toggle {
   background-color: #eeeeee;
   color: rgb(22, 22, 22);
   border: 0px;
 }
-.pizza-icon a:hover{
-  background-color: rgb(133, 138, 145);
+
+.pizza-icon a {
+  transition: background-color 0.3s;
+  padding: 11px 14px;
   border-radius: 50%;
+}
+
+.pizza-icon a:hover{
+  background-color: #cecece;
   
+}
+.orologio-icon a {
+  transition: background-color 0.3s;
+  padding: 10px 12px;
+  border-radius: 50%;
+}
+
+.orologio-icon a:hover{
+  background-color: #cecece;
+  
+}
+.chart-icon a {
+  transition: background-color 0.3s;
+  padding: 10px 12px;
+  border-radius: 50%;
+}
+
+.chart-icon a:hover{
+  background-color: #cecece;
+  
+}
+.dashboard-color{
+  background-color: #842029;
+}
+.btn-account{
+  background-color: #fcfcfc;
+}
+.notifiche{
+  background-color: #9c9c9c;
+  color: #fcfcfc;
+}
+.notifiche:hover{
+  background-color: black;
+}
+.ingranaggio-icon a{
+  transition: background-color 0.3s;
+  padding: 10px 10px;
+  border-radius: 50%;
+}
+.ingranaggio-icon a:hover{
+  background-color: #cecece;
+
+}
+.notifiche-icon a{
+  transition: background-color 0.3s;
+  padding: 10px 10px;
+  border-radius: 999px;
+  
+}
+.notifiche-icon a:hover{
+  background-color: #cecece;
+}
+.fc-daygrid-event {
+  background-color: #a01f24 !important;
+  color: #fff !important;
+  font-weight: 500;
+  border-radius: 6px;
+  padding: 2px 6px;
+  border: none;
 }

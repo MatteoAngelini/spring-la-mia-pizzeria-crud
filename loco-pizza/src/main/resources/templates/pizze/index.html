@@ -14,13 +14,15 @@
 <body>
     <div th:replace="/fragments/navbar :: header-navbar"></div>
     <!-- Sidebar -->
-    <div class="sidebar position-fixed d-flex flex-column">
-      <ul class="nav flex-column">
-        <li class="nav-item border-bottom border-secondary"><a th:href="@{/ingredienti}"
-            class="nav-link">Ingredienti</a></li>
-      </ul>
+    <div class="sidebar position-fixed d-flex flex-column border-end border-secondary-subtle">
+        <ul class="nav flex-column">
+            <li class="nav-item border-bottom border-secondary-subtle"><a th:href="@{/ingredienti}"
+                    class="nav-link"><i class="bi bi-egg-fill w-2"></i> Ingredienti</a></li>
+            <li class="nav-item border-bottom border-secondary-subtle"><a th:href="@{/offerte}"
+                    class="nav-link"><i class="bi bi-percent w-2"></i> Offerte</a></li>
+        </ul>
     </div>
-    <header class="content-title d-flex align-items-center justify-content-between" th:object="${pizza}">
+    <header class="content-title d-flex align-items-center justify-content-between border-bottom border-secondary-subtle" th:object="${pizza}">
         <h3 class="title">Pizze</h3>
         <div style="margin-right: 60px;">
             <a th:href="@{/pizze/creazione}" class="text-decoration-none me-1">
@@ -56,7 +58,7 @@
         </ol>
     </nav>
     <main style="padding-top: 20px;">
-        <div class="col-12 tabella-pizze rounded">
+        <div class="col-12 tabella-pizze rounded" th:if="${pizze != null and !pizze.isEmpty()}">
 
             <form class="d-flex mb-2" role="search" method="get" th:action="@{/pizze}">
                 <div class="input-group">
@@ -89,7 +91,7 @@
                         <td th:text="${pizza.id}" class="align-middle text-center">
                             </th>
                         <td style="align-items: center; text-align: center;" class="align-middle text-center"><img
-                                th:src="${pizza.imageUrl}" alt="Immagine Pizza" class="rounded" width="50px" ></td>
+                                th:src="${pizza.imageUrl}" alt="Immagine Pizza" class="rounded" width="50px"></td>
                         <td th:text="${pizza.titolo}" style="font-weight: 700;" class="align-middle text-start"></td>
                         <td th:text="${pizza.descrizione}" class="align-middle text-start"></td>
                         <td class="align-middle text-start">&euro; [[${#numbers.formatDecimal(pizza.prezzo, 1, 2)}]]
@@ -99,6 +101,10 @@
                 </tbody>
             </table>
 
+        </div>
+
+        <div th:unless="${pizze != null and !pizze.isEmpty()}" style="padding-left: 190px;">
+            <p class="text-center text-muted">Non ci sono pizze salvate attualmente.</p>
         </div>
 
 
