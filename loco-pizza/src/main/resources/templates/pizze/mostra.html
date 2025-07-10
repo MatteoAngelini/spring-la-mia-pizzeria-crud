@@ -54,8 +54,8 @@
 
     <main th:object="${pizza}" style="padding-top: 20px;">
         <div class="container">
-            <div class="row row-cols-2">
-                <div class="col-4 align-items-start">
+            <div class="row">
+                <div class="col-4 align-items-start" style="padding-left: 160px;">
                     <div class="card p-0" style="width: 18rem;">
                         <img th:src="*{imageUrl}" alt="Immagine Pizza" width="100px" class="card-img-top">
                         <div class="card-body">
@@ -72,7 +72,7 @@
                     </div>
                 </div>
 
-                <div class="col-8 p-3 rounded" th:if="${offerte != null and !offerte.isEmpty()}">
+                <div class="col-8 rounded" th:if="${offerte != null and !offerte.isEmpty()}" style="padding-left: 20px;">
                     <form method="get" th:action="@{/pizze/{id}(id=${pizza.id})}" class="mb-3 d-flex" role="search">
                         <div class="input-group">
                             <button class="btn btn-outline-dark" type="submit" style="z-index: 0;">
