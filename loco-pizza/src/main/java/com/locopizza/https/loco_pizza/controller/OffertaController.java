@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
+
+import com.locopizza.https.loco_pizza.model.Notifica;
 import com.locopizza.https.loco_pizza.model.Offerta;
 import com.locopizza.https.loco_pizza.model.Pizza;
+import com.locopizza.https.loco_pizza.repository.NotificaRepository;
 import com.locopizza.https.loco_pizza.repository.OffertaRepository;
 import com.locopizza.https.loco_pizza.repository.PizzaRepository;
 import jakarta.validation.Valid;
@@ -31,6 +34,9 @@ public class OffertaController {
     @Autowired
     private PizzaRepository pizzaRepository;
 
+    @Autowired
+    private NotificaRepository notificaRepository;
+
     @GetMapping
     public String index(@RequestParam(value = "keyword", required = false) String keyword, Model model) {
         List<Offerta> offerte;
@@ -39,6 +45,12 @@ public class OffertaController {
         } else {
             offerte = offertaRepository.findAll();
         }
+
+        List<Notifica> notifiche = notificaRepository.findTop5ByOrderByDataCreazioneDesc();
+        long nonLette = notificaRepository.countByLettaFalse();
+
+        model.addAttribute("notifiche", notifiche);
+        model.addAttribute("nonLette", nonLette);
         model.addAttribute("offerte", offerte);
         model.addAttribute("keyword", keyword);
         return "offerte/index";
@@ -50,6 +62,11 @@ public class OffertaController {
         if (pizzaOptional.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pizza non trovata con ID " + id);
         }
+        List<Notifica> notifiche = notificaRepository.findTop5ByOrderByDataCreazioneDesc();
+        long nonLette = notificaRepository.countByLettaFalse();
+
+        model.addAttribute("notifiche", notifiche);
+        model.addAttribute("nonLette", nonLette);
 
         model.addAttribute("pizza", pizzaOptional.get());
         model.addAttribute("offerta", new Offerta());
@@ -94,6 +111,11 @@ public class OffertaController {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
 
+        List<Notifica> notifiche = notificaRepository.findTop5ByOrderByDataCreazioneDesc();
+        long nonLette = notificaRepository.countByLettaFalse();
+
+        model.addAttribute("notifiche", notifiche);
+        model.addAttribute("nonLette", nonLette);
         model.addAttribute("offerta", offerta);
         model.addAttribute("pizza", pizza);
         model.addAttribute("dataInizioFormattata", offerta.getDataInizio().format(formatter));

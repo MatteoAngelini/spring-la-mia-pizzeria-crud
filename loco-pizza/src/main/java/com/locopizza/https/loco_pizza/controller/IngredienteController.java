@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.locopizza.https.loco_pizza.model.Ingrediente;
+import com.locopizza.https.loco_pizza.model.Notifica;
 import com.locopizza.https.loco_pizza.model.Pizza;
 import com.locopizza.https.loco_pizza.repository.IngredienteRepository;
+import com.locopizza.https.loco_pizza.repository.NotificaRepository;
 
 import jakarta.validation.Valid;
 
@@ -27,6 +29,9 @@ public class IngredienteController {
     @Autowired
     private IngredienteRepository ingredienteRepository;
 
+    @Autowired
+    private NotificaRepository notificaRepository;
+
     @GetMapping
     public String index(@RequestParam(value = "keyword", required = false) String keyword, Model model) {
         List<Ingrediente> ingredienti;
@@ -35,6 +40,11 @@ public class IngredienteController {
         } else {
             ingredienti = ingredienteRepository.findAll();
         }
+        List<Notifica> notifiche = notificaRepository.findTop5ByOrderByDataCreazioneDesc();
+        long nonLette = notificaRepository.countByLettaFalse();
+
+        model.addAttribute("notifiche", notifiche);
+        model.addAttribute("nonLette", nonLette);
         model.addAttribute("ingredienti", ingredienti);
         model.addAttribute("keyword", keyword);
         return "ingredienti/index";
@@ -42,6 +52,11 @@ public class IngredienteController {
 
     @GetMapping("/creazione")
     public String create(Model model) {
+        List<Notifica> notifiche = notificaRepository.findTop5ByOrderByDataCreazioneDesc();
+        long nonLette = notificaRepository.countByLettaFalse();
+
+        model.addAttribute("notifiche", notifiche);
+        model.addAttribute("nonLette", nonLette);
 
         model.addAttribute("ingrediente", new Ingrediente());
         return "/ingredienti/creazione";

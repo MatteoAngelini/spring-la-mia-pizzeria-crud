@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
 
@@ -192,6 +193,29 @@
                     }
                 });
             });
+        });
+    </script>
+    <script>
+        document.getElementById('segnaTutteComeLette').addEventListener('click', function () {
+            fetch('/notifiche/segna-tutte-lette', {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="_csrf"]').getAttribute('content'),
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => {
+                    if (response.ok) {
+                        // Imposta il badge a 0
+                        document.querySelector('.notifiche').textContent = '0';
+                         this.disabled = true;
+                    } else {
+                        console.error('Errore durante la richiesta');
+                    }
+                })
+                .catch(error => {
+                    console.error('Errore di rete:', error);
+                });
         });
     </script>
 </body>

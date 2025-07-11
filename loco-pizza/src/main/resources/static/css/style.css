@@ -107,7 +107,7 @@ table.rounded-corners tbody tr:last-child td:last-child {
 }
 
 .breadcrumb-item a:hover {
-  color: rgb(189, 0, 0);
+  color: #bd0000;
 
   text-decoration: none;
 }
@@ -135,61 +135,72 @@ table.rounded-corners tbody tr:last-child td:last-child {
   border-radius: 50%;
 }
 
-.pizza-icon a:hover{
+.pizza-icon a:hover {
   background-color: #cecece;
-  
+
 }
+
 .orologio-icon a {
   transition: background-color 0.3s;
   padding: 10px 12px;
   border-radius: 50%;
 }
 
-.orologio-icon a:hover{
+.orologio-icon a:hover {
   background-color: #cecece;
-  
+
 }
+
 .chart-icon a {
   transition: background-color 0.3s;
   padding: 10px 12px;
   border-radius: 50%;
 }
 
-.chart-icon a:hover{
+.chart-icon a:hover {
   background-color: #cecece;
-  
+
 }
-.dashboard-color{
+
+.dashboard-color {
   background-color: #842029;
 }
-.btn-account{
+
+.btn-account {
   background-color: #fcfcfc;
 }
-.notifiche{
+
+.notifiche {
   background-color: #9c9c9c;
   color: #fcfcfc;
 }
-.notifiche:hover{
+
+.notifiche:hover {
   background-color: black;
 }
-.ingranaggio-icon a{
+
+.ingranaggio-icon a {
   transition: background-color 0.3s;
   padding: 10px 10px;
   border-radius: 50%;
 }
-.ingranaggio-icon a:hover{
+
+.ingranaggio-icon a:hover {
   background-color: #cecece;
 
 }
-.notifiche-icon a{
+
+.notifiche-icon a {
   transition: background-color 0.3s;
   padding: 10px 10px;
   border-radius: 999px;
-  
+
 }
-.notifiche-icon a:hover{
+
+.notifiche-icon a:hover {
   background-color: #cecece;
 }
+
 .fc-daygrid-event {
   background-color: #a01f24 !important;
   color: #fff !important;
@@ -197,4 +208,173 @@ table.rounded-corners tbody tr:last-child td:last-child {
   border-radius: 6px;
   padding: 2px 6px;
   border: none;
+}
+
+.fc-toolbar-title {
+  text-transform: capitalize;
+
+}
+
+/* Bottoni custom */
+.fc .fc-button {
+  background-color: #cecece;
+  border: none;
+  color: #000000;
+  border-radius: 6px;
+  padding: 6px 12px;
+  display: inline-block;
+  text-align: start;
+  margin-left: 10px;
+}
+
+.fc .fc-button:hover {
+  background-color: #000000;
+  color: white;
+}
+
+/* Bottoni attivi (es. "oggi") */
+.fc .fc-button-active {
+  background-color: #000000;
+  color: rgb(255, 255, 255);
+}
+
+/* Celle dei giorni */
+.fc-daygrid-day-frame {
+  border: #dee2e6;
+  /* grigio chiaro Bootstrap */
+}
+
+.fc .fc-col-header-cell-cushion {
+  color: #9c9c9c;
+  font-weight: 500;
+  padding: 10px;
+  display: inline-block;
+  width: 100%;
+  text-decoration: none;
+  text-align: end;
+  text-transform: capitalize;
+}
+
+/* Numeri dei giorni */
+.fc-daygrid-day-number {
+  color: #000000;
+  font-weight: 500;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.fc .fc-today-button {
+  background-color: #cecece !important;
+  color: rgb(0, 0, 0) !important;
+  border: none !important;
+  border-radius: 6px !important;
+  padding: 6px 12px !important;
+  font-weight: 500 !important;
+  transition: background-color 0.3s ease;
+}
+
+.fc .fc-today-button:hover {
+  background-color: #000000 !important;
+  /* Colore al passaggio mouse */
+  color: white !important;
+}
+
+.fc .fc-daygrid-row,
+.fc .fc-row.fc-daygrid-week {
+  min-height: 90px;
+}
+
+.fc-header-toolbar {
+  background-color: #e9e9e9;
+  padding: 10px 15px;
+  display: flex;
+  border-radius: 2%;
+  justify-content: flex-start;
+  font-size: 12px;
+  margin-left: 20px;
+  flex-wrap: wrap;
+  width: 450px;
+  z-index: 0;
+}
+
+.fc-header-toolbar .fc-toolbar-chunk {
+  display: flex;
+  align-items: center;
+}
+
+.fc .fc-toolbar-title {
+  font-size: 1.25rem;
+  font-weight: 500;
+  text-transform: capitalize;
+  font-size: 16px;
+}
+
+.fc-button {
+  font-size: 0.875rem;
+  padding: 5px 10px;
+}
+
+.fc-daygrid-day.fc-day-today {
+  background-color: transparent !important;
+}
+
+.fc-day-today .fc-daygrid-day-number {
+  background-color: #000;
+  color: #fff;
+  padding: 0px 8px;
+  margin-top: 4px;
+  border-radius: 10%;
+  display: inline-block;
+}
+
+.fc .fc-list-day-text {
+  color: #000000;
+  text-decoration: none;
+  text-transform: capitalize;
+}
+
+.fc .fc-list-event-dot {
+  border-color: transparent;
+}
+
+.fc .fc-list-day-side-text {
+  color: #000000;
+  text-decoration: none;
+  text-transform: capitalize;
+}
+
+.fc .fc-list-event-time {
+  color: #000000;
+  font-weight: 600;
+  text-decoration: none;
+  text-transform: capitalize;
+}
+
+.fc .fc-list-event-title {
+  padding: 6px 12px;
+  background-color: #ffbebe;
+  color: #a01f24;
+  font-weight: 700;
+}
+
+.notifica :hover {
+  background-color: #dddddd;
+
+}
+
+.pagination .page-item.active .page-link {
+  background-color: black;
+  color: white;
+  border-color: #000;
+}
+
+.pagination .page-link {
+  color: #212529;
+}
+
+.pagination .page-link:hover {
+  background-color: #000000;
+  /* rosato */
+  border-color: #000000;
+  color: #ffffff;
 }

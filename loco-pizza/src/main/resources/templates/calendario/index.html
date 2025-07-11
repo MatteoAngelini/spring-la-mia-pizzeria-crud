@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
     <title>Calendario Offerte</title>
 
     <!-- Bootstrap 5 -->
@@ -21,8 +22,8 @@
     <!-- Sidebar -->
     <div class="sidebar position-fixed d-flex flex-column border-end border-secondary-subtle">
         <ul class="nav flex-column">
-            <li class="nav-item border-bottom border-secondary-subtle"><a th:href="@{/}" class="nav-link active"><i
-                        class="bi bi-bar-chart-fill w-2"></i> Dashboard</a>
+            <li class="nav-item border-bottom border-secondary-subtle"><a th:href="@{/calendario}" class="nav-link active"><i
+                        class="bi bi-bar-chart-fill w-2"></i> Calendario</a>
             </li>
         </ul>
     </div>
@@ -63,23 +64,50 @@
 
             let calendar = new FullCalendar.Calendar(calendarEl, {
                 locale: 'it',
+                firstDay: 1,
+                contentHeight: 800,
+                aspectRatio: 1.5,
+                expandRows: false,
+                fixedWeekCount: false,
+                dayMaxEventRows: true,
+                allDayText: 'Tutto il giorno',
                 initialView: 'dayGridMonth',
                 headerToolbar: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+                    left: 'title prev,next today dayGridMonth,listWeek',
+                    center: '',
+                    right: '',
                 },
                 buttonText: {
                     today: 'Oggi',
                     month: 'Mese',
-                    week: 'Settimana',
-                    day: 'Giorno',
                     list: 'Lista'
                 },
-                events: '/api/eventi-offerte'
+                events: '/api/eventi-offerte',
             });
 
             calendar.render();
+        });
+
+        document.getElementById('segnaTutteComeLette').addEventListener('click', function () {
+            fetch('/notifiche/segna-tutte-lette', {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="_csrf"]').getAttribute('content'),
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => {
+                    if (response.ok) {
+                        // Imposta il badge a 0
+                        document.querySelector('.notifiche').textContent = '0';
+                         this.disabled = true;
+                    } else {
+                        console.error('Errore durante la richiesta');
+                    }
+                })
+                .catch(error => {
+                    console.error('Errore di rete:', error);
+                });
         });
     </script>
 

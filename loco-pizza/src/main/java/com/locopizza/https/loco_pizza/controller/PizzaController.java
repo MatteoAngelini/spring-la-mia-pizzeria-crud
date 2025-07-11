@@ -1,7 +1,10 @@
 package com.locopizza.https.loco_pizza.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,11 +14,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.locopizza.https.loco_pizza.model.Notifica;
 import com.locopizza.https.loco_pizza.model.Offerta;
 import com.locopizza.https.loco_pizza.model.Pizza;
 import com.locopizza.https.loco_pizza.repository.IngredienteRepository;
+import com.locopizza.https.loco_pizza.repository.NotificaRepository;
 import com.locopizza.https.loco_pizza.repository.OffertaRepository;
 import com.locopizza.https.loco_pizza.repository.PizzaRepository;
+
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -32,16 +38,37 @@ public class PizzaController {
     @Autowired
     private IngredienteRepository ingredienteRepository;
 
+    @Autowired
+    private NotificaRepository notificaRepository;
+
     @GetMapping
-    public String index(@RequestParam(value = "keyword", required = false) String keyword, Model model) {
-        List<Pizza> pizze;
+    public String index(
+            @RequestParam(value = "keyword", required = false) String keyword,
+            @RequestParam(value = "page", defaultValue = "0") int page,
+            Model model) {
+
+        int pageSize = 10;
+        Page<Pizza> pagedPizze;
+
         if (keyword != null && !keyword.isEmpty()) {
-            pizze = pizzaRepository.findByTitoloContainingIgnoreCase(keyword);
+            pagedPizze = pizzaRepository.findByTitoloContainingIgnoreCase(keyword, PageRequest.of(page, pageSize));
         } else {
-            pizze = pizzaRepository.findAll();
+            pagedPizze = pizzaRepository.findAll(PageRequest.of(page, pageSize));
         }
-        model.addAttribute("pizze", pizze);
+
+        // Notifiche
+        List<Notifica> notifiche = notificaRepository.findTop5ByOrderByDataCreazioneDesc();
+        long nonLette = notificaRepository.countByLettaFalse();
+
+        model.addAttribute("notifiche", notifiche);
+        model.addAttribute("nonLette", nonLette);
+
+        // Pagine
+        model.addAttribute("pizze", pagedPizze.getContent());
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", pagedPizze.getTotalPages());
         model.addAttribute("keyword", keyword);
+
         return "/pizze/index";
     }
 
@@ -63,6 +90,12 @@ public class PizzaController {
             offerte = pizza.getOfferte();
         }
 
+        List<Notifica> notifiche = notificaRepository.findTop5ByOrderByDataCreazioneDesc();
+        long nonLette = notificaRepository.countByLettaFalse();
+
+        model.addAttribute("notifiche", notifiche);
+        model.addAttribute("nonLette", nonLette);
+
         model.addAttribute("keyword", keyword);
         model.addAttribute("pizza", pizza);
         model.addAttribute("offerte", offerte);
@@ -75,6 +108,12 @@ public class PizzaController {
 
         model.addAttribute("pizza", new Pizza());
         model.addAttribute("ingredienti", ingredienteRepository.findAll());
+
+        List<Notifica> notifiche = notificaRepository.findTop5ByOrderByDataCreazioneDesc();
+        long nonLette = notificaRepository.countByLettaFalse();
+
+        model.addAttribute("notifiche", notifiche);
+        model.addAttribute("nonLette", nonLette);
         return "/pizze/creazione";
     }
 
@@ -93,6 +132,12 @@ public class PizzaController {
 
         pizzaRepository.save(formPizza);
 
+        Notifica notifica = new Notifica();
+        notifica.setMessaggio(formPizza.getTitolo());
+        notifica.setDataCreazione(LocalDateTime.now());
+        notifica.setLetta(false);
+        notificaRepository.save(notifica);
+
         return "redirect:/pizze";
     }
 
@@ -100,6 +145,12 @@ public class PizzaController {
     public String edit(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("pizza", pizzaRepository.findById(id).get());
         model.addAttribute("ingredienti", ingredienteRepository.findAll());
+
+        List<Notifica> notifiche = notificaRepository.findTop5ByOrderByDataCreazioneDesc();
+        long nonLette = notificaRepository.countByLettaFalse();
+
+        model.addAttribute("notifiche", notifiche);
+        model.addAttribute("nonLette", nonLette);
         return "/pizze/modifica";
     }
 
@@ -117,6 +168,12 @@ public class PizzaController {
         }
 
         pizzaRepository.save(formPizza);
+
+        List<Notifica> notifiche = notificaRepository.findTop5ByOrderByDataCreazioneDesc();
+        long nonLette = notificaRepository.countByLettaFalse();
+
+        model.addAttribute("notifiche", notifiche);
+        model.addAttribute("nonLette", nonLette);
 
         return "redirect:/pizze";
     }

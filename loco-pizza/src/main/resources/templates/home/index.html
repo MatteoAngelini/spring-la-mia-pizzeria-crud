@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
     <title>Dashboard Loco Pizza</title>
+
 
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.7/css/bootstrap.min.css}" />
     <link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css}">
@@ -17,7 +19,8 @@
     <!-- Sidebar -->
     <div class="sidebar position-fixed d-flex flex-column border-end border-secondary-subtle">
         <ul class="nav flex-column">
-            <li class="nav-item border-bottom border-secondary-subtle"><a th:href="@{/}" class="nav-link active"><i class="bi bi-bar-chart-fill w-2" ></i> Dashboard</a>
+            <li class="nav-item border-bottom border-secondary-subtle"><a th:href="@{/}" class="nav-link active"><i
+                        class="bi bi-bar-chart-fill w-2"></i> Dashboard</a>
             </li>
         </ul>
     </div>
@@ -33,13 +36,15 @@
                                 <hr class="border border-light border-1">
                                 <div class="row-col-1 d-flex align-items-center justify-content-between">
                                     <span class="text-white" style="font-size: 18px; font-weight: 600;">Pizze</span>
-                                    <span class="text-white" style="font-size: 18px; font-weight: 600;">0</span>
+                                    <span class="text-white" style="font-size: 18px; font-weight: 600;"
+                                        th:text="${totalePizze}">0</span>
                                 </div>
                                 <hr class="border border-light border-1">
                                 <div class="row-col-1 d-flex align-items-center justify-content-between">
                                     <span class="text-white"
                                         style="font-size: 18px; font-weight: 600;">Ingredienti</span>
-                                    <span class="text-white" style="font-size: 18px; font-weight: 600;">0</span>
+                                    <span class="text-white" style="font-size: 18px; font-weight: 600;"
+                                        th:text="${totaleIngredienti}">0</span>
                                 </div>
                                 <hr class="border border-light border-1">
                             </div>
@@ -47,21 +52,21 @@
                                 <hr class="border border-light border-1">
                                 <div class="row-col-1 d-flex align-items-center justify-content-between">
                                     <span class="text-white" style="font-size: 18px; font-weight: 600;">Offerte</span>
-                                    <span class="text-white" style="font-size: 18px; font-weight: 600;">0</span>
+                                    <span class="text-white" style="font-size: 18px; font-weight: 600;"
+                                        th:text="${totaleOfferte}">0</span>
                                 </div>
                                 <hr class="border border-light border-1">
                             </div>
                             <div class="col">
                                 <hr class="border border-light border-1">
                                 <div class="row-col-1 d-flex align-items-center justify-content-between">
-                                    <span class="text-white"
-                                        style="font-size: 18px; font-weight: 600;">Utenti</span>
-                                    <span class="text-white" style="font-size: 18px; font-weight: 600;">2</span>
+                                    <span class="text-white" style="font-size: 18px; font-weight: 600;">Utenti</span>
+                                    <span class="text-white" style="font-size: 18px; font-weight: 600;"
+                                        th:text="${totaleUtenti}">00</span>
                                 </div>
                                 <hr class="border border-light border-1">
                                 <div class="row-col-1 d-flex align-items-center justify-content-between">
-                                    <span class="text-white"
-                                        style="font-size: 18px; font-weight: 600;">Ruoli</span>
+                                    <span class="text-white" style="font-size: 18px; font-weight: 600;">Ruoli</span>
                                     <span class="text-white" style="font-size: 18px; font-weight: 600;">0</span>
                                 </div>
                                 <hr class="border border-light border-1">
@@ -93,7 +98,7 @@
                             <div class="row" style="height: 90px;">
                                 <div class="col text-center"
                                     style="margin-top: 20px; color: rgb(82, 82, 82); font-weight: 400;">
-                                    <h2>10</h2>
+                                    <h2 th:text="${totalePizze}">00</h2>
                                 </div>
                             </div>
                             <div class="row" style="height: 60px;">
@@ -105,7 +110,7 @@
                             <div class="row" style="height: 75px;">
                                 <div class="col text-center">
                                     <p style="font-size: 12px;  font-weight: 700;" class="badge bg-danger">
-                                        10 Da definire
+                                        0 Da definire
                                     </p>
                                 </div>
                             </div>
@@ -122,7 +127,7 @@
                             <div class="row" style="height: 90px;">
                                 <div class="col text-center"
                                     style="margin-top: 20px; color: rgb(82, 82, 82); font-weight: 400;">
-                                    <h2>8</h2>
+                                    <h2 th:text="${totaleIngredienti}">8</h2>
                                 </div>
                             </div>
                             <div class="row" style="height: 60px;">
@@ -151,7 +156,7 @@
                             <div class="row" style="height: 90px;">
                                 <div class="col text-center"
                                     style="margin-top: 20px; color: rgb(82, 82, 82); font-weight: 400;">
-                                    <h2>2</h2>
+                                    <h2 th:text="${totaleUtenti}">2</h2>
                                 </div>
                             </div>
                             <div class="row" style="height: 60px;">
@@ -180,7 +185,7 @@
                             <div class="row" style="height: 90px;">
                                 <div class="col text-center"
                                     style="margin-top: 20px; color: rgb(82, 82, 82); font-weight: 400;">
-                                    <h2>0</h2>
+                                    <h2 th:text="${totaleOfferte}">0</h2>
                                 </div>
                             </div>
                             <div class="row" style="height: 60px;">
@@ -321,8 +326,9 @@
         <div class="container-fluid" style="height: 400px; padding-left: 190px;">
 
             <div class="row" style="height: 50px;">
-                <div class="col-6 d-flex justify-content-start align-items-center border-end border-secondary-subtle" style="height: 50px;">
-                    <h5>Notifiche</h3>
+                <div class="col-6 d-flex justify-content-start align-items-center border-end border-secondary-subtle"
+                    style="height: 50px;">
+                    <h5>Notifiche aggiornamenti</h3>
                 </div>
 
                 <div class="col-6 d-flex justify-content-start align-items-center" style="height: 50px;">
@@ -331,18 +337,22 @@
             </div>
 
             <div class="row">
-                <div class="col-6 border-end border-bottom border-secondary-subtle d-flex justify-content-center align-items-center">
+                <div
+                    class="col-6 border-end border-bottom border-secondary-subtle d-flex justify-content-center align-items-center">
 
 
-                    <div class="container-fluid border border-2 border-danger border rounded bg-danger-subtle shadow" style="height: 300px; margin-bottom: 20px; ">
+                    <div class="container-fluid border border-2 border-danger border rounded bg-danger-subtle shadow"
+                        style="height: 300px; margin-bottom: 20px; ">
 
 
                     </div>
                 </div>
-                <div class="col-6 border-end border-bottom border-secondary-subtle d-flex justify-content-center align-items-center">
+                <div
+                    class="col-6 border-end border-bottom border-secondary-subtle d-flex justify-content-center align-items-center">
 
 
-                    <div class="container-fluid border border-2 border-danger border rounded bg-danger-subtle shadow" style="height: 300px; margin-bottom: 20px;">
+                    <div class="container-fluid border border-2 border-danger border rounded bg-danger-subtle shadow"
+                        style="height: 300px; margin-bottom: 20px;">
 
 
                     </div>
@@ -358,6 +368,29 @@
 
 
     <script th:src="@{/webjars/bootstrap/5.3.7/js/bootstrap.bundle.min.js}"></script>
+    <script>
+        document.getElementById('segnaTutteComeLette').addEventListener('click', function () {
+            fetch('/notifiche/segna-tutte-lette', {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="_csrf"]').getAttribute('content'),
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => {
+                    if (response.ok) {
+                        // Imposta il badge a 0
+                        document.querySelector('.notifiche').textContent = '0';
+                         this.disabled = true;
+                    } else {
+                        console.error('Errore durante la richiesta');
+                    }
+                })
+                .catch(error => {
+                    console.error('Errore di rete:', error);
+                });
+        });
+    </script>
 
 </body>
 

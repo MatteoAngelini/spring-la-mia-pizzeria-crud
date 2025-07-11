@@ -56,20 +56,50 @@
             </div>
 
             <div
-              class="col text-center border-end border-secondary-subtle d-flex align-items-center justify-content-center notifiche-icon"
+              class="col text-center border-end border-secondary-subtle d-flex align-items-center justify-content-center notifiche-icon dropdown"
               style="height: 50px;">
-              <a th:href="@{/}" class="d-flex align-items-center text-decoration-none">
-                <img width="24" height="24" th:src="@{https://img.icons8.com/material-sharp/24/9c9c9c/bell.png}"
-                  alt="bell" th:onmouseover="|this.src='https://img.icons8.com/material-sharp/24/000000/bell.png'|"
-                  th:onmouseout="|this.src='https://img.icons8.com/material-sharp/24/9c9c9c/bell.png'|" />
-                <span class="badge ms-1 rounded-pill notifiche" style="padding: 5px 15px;">0</span>
+
+              <a href="#" class="d-flex align-items-center text-decoration-none" id="dropdownNotifiche" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+
+                <img width="24" height="24" src="https://img.icons8.com/material-sharp/24/9c9c9c/bell.png" alt="bell"
+                  onmouseover="this.src='https://img.icons8.com/material-sharp/24/000000/bell.png';"
+                  onmouseout="this.src='https://img.icons8.com/material-sharp/24/9c9c9c/bell.png';" />
+
+                <span class="badge ms-1 rounded-pill bg-secondary notifiche" th:classappend="${nonLette} > 0 ? ' bg-danger' : ' bg-secondary'" style="padding: 5px 15px;"
+                  th:text="${nonLette}">0</span>
               </a>
+
+              <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="dropdownNotifiche"
+                style="min-width: 300px;">
+                <li class="d-flex justify-content-between align-items-center px-3">
+                  <h5 class="mb-0">Notifiche</h5>
+                  <button id="segnaTutteComeLette" class="btn btn-outline-secondary btn-sm">
+                    Segna come lette
+                  </button>
+                </li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+
+                <li th:each="notifica : ${notifiche}" style="margin-left: 10px; margin-right: 10px;" class="notifica">
+                  <p class="dropdown-item" style="border-radius: 2%;"><img th:src="@{/img/logo-pizza.png}"
+                      alt="Logo Loco Pizza" width="35px" height="35px"> <strong>Nuova pizza:
+                    </strong>[[${notifica.messaggio}]]</p>
+                </li>
+
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><p class="dropdown-footer text-center text-muted text-decoration-none" style="border-radius: 0%;"
+                    th:text="|Totale: ${notifiche.size()}|"></p></li>
+              </ul>
             </div>
 
             <div
               class="col text-center border-end border-secondary-subtle d-flex align-items-center justify-content-center ingranaggio-icon"
               style="height: 50px;">
-              <a th:href="@{/}">
+              <a th:href="@{/impostazioni}">
                 <img width="30" height="30" src="https://img.icons8.com/sf-black/64/9c9c9c/settings--v1.png"
                   alt="settings--v1"
                   th:onmouseover="|this.src='https://img.icons8.com/sf-black/64/000000/settings--v1.png'|"
@@ -134,4 +164,5 @@
 
     </div>
   </header>
+
 </body>
