@@ -68,6 +68,11 @@ public class IngredienteController {
             @RequestParam("azione") String azione) {
 
         if (azione.equals("cancel")) {
+            List<Notifica> notifiche = notificaRepository.findTop5ByOrderByDataCreazioneDesc();
+            long nonLette = notificaRepository.countByLettaFalse();
+
+            model.addAttribute("notifiche", notifiche);
+            model.addAttribute("nonLette", nonLette);
 
             return "/ingredienti/creazione";
         }

@@ -123,6 +123,11 @@ public class PizzaController {
 
         if (azione.equals("cancel")) {
             model.addAttribute("ingredienti", ingredienteRepository.findAll());
+            List<Notifica> notifiche = notificaRepository.findTop5ByOrderByDataCreazioneDesc();
+            long nonLette = notificaRepository.countByLettaFalse();
+
+            model.addAttribute("notifiche", notifiche);
+            model.addAttribute("nonLette", nonLette);
             return "/pizze/creazione";
         }
         if (bindingResult.hasErrors()) {

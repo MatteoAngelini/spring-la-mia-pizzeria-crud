@@ -37,7 +37,12 @@ public class CalendarioController {
     // API JSON per eventi
     @GetMapping("/api/eventi-offerte")
     @ResponseBody
-    public List<EventoCalendario> eventiOfferte() {
+    public List<EventoCalendario> eventiOfferte(Model model) {
+        List<Notifica> notifiche = notificaRepository.findTop5ByOrderByDataCreazioneDesc();
+        long nonLette = notificaRepository.countByLettaFalse();
+
+        model.addAttribute("notifiche", notifiche);
+        model.addAttribute("nonLette", nonLette);
         List<Offerta> offerte = offertaRepository.findAll();
 
         return offerte.stream()
