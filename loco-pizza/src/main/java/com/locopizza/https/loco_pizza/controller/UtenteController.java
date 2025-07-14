@@ -115,7 +115,7 @@ public class UtenteController {
         model.addAttribute("notifiche", notifiche);
         model.addAttribute("nonLette", nonLette);
 
-        return "redirect:/pizze";
+        return "redirect:/utenti";
     }
 
 
@@ -127,6 +127,6 @@ public class UtenteController {
                  utenteRepository.deleteById(id);
              };
 
-         return "redirect:/pizze";
+         return "redirect:/utenti";
      }
 }
